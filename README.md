@@ -6,3 +6,5 @@
 3. Change to project Directory
 4. expo install or yarn install or npm install
 5. expo start
+
+*Note: Project is using typescript*
