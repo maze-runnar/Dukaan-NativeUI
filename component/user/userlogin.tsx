@@ -4,9 +4,8 @@ import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 import { useNavigation } from "@react-navigation/native";
-import response from "../../utils/data";
 
-const UserSignUp = (props: any) => {
+const UserLogin = (props: any) => {
   let [username, setUsername] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errorMsg, setErrorMsg] = React.useState("");
@@ -17,16 +16,16 @@ const UserSignUp = (props: any) => {
     }
   };
   const navigation = useNavigation();
-  const userSignUP = async () => {
+  const userLogin = async () => {
     if (!validateInput()) {
       console.log(
-        "Don't send post request for signup, invalid username or password!",
+        "Don't send post request for login, invalid username or password!",
         !validateInput
       );
       setErrorMsg("invalid username or password");
       return;
     }
-    await fetch(API + ENDPOINTS.REGISTER, {
+    await fetch(API + ENDPOINTS.LOGIN, {
       method: "POST",
       cache: "no-cache",
       headers: {
@@ -36,17 +35,10 @@ const UserSignUp = (props: any) => {
       body: JSON.stringify({ username: username, password_hash: password }),
     })
       .then(async (data: any) => {
-        console.log(data.status); // return 200, 403 
         let x = await data.json();
-        console.log(x?.[response.DATA]);
-        setErrorMsg(x?.[response.DATA]);
-        if(x[response.DATA] === response.SUCCESS) {
-          navigation.navigate("UserLogin")
-        }
+        console.log(x?.["message"]);
+        setErrorMsg(x?.["message"]);
         console.log("getting into then block", x);
-      })
-      .catch((e) => {
-        console.log("getting an error", e);
       })
       .finally(() => {
         console.log("getting into finally block");
@@ -91,19 +83,11 @@ const UserSignUp = (props: any) => {
         secureTextEntry
       />
       <small style={{ color: "red" }}>{errorMsg}</small>
-      <Pressable style={styles.ButtonStyle} onPress={() => userSignUP()}>
-        <Text style={{ color: "purple" }}> Signup </Text>
-      </Pressable>
-      <br />
-      <Text>Already a User?</Text>
-      <Pressable
-        style={{ bottom: 0 }}
-        onPress={() => navigation.navigate("UserLogin")}
-      >
-        <Text style={{ color: "purple" }}>Login</Text>
+      <Pressable style={styles.ButtonStyle} onPress={() => userLogin()}>
+        <Text style={{ color: "purple" }}> Login </Text>
       </Pressable>
     </SafeAreaView>
   );
 };
 
-export default UserSignUp;
+export default UserLogin;

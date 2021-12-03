@@ -60,7 +60,7 @@ const Greeting = (props: any) => {
       </Text>
       <Pressable
         style={styles.ButtonStyle}
-        onPress={() => console.log("User pressed pressable")}
+        onPress={() => navigation.navigate("Dashboard")}
       >
         <Text style={{ color: "purple" }}> MERCHANT </Text>
       </Pressable>
