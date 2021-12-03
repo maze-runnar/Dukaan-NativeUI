@@ -1,8 +1,8 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import React from "react";
 import UserSignUp from "./usersignup";
-import UserLogin from "./userlogin";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import NearShops from "./usernearshops";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -11,7 +11,7 @@ function MyTabs() {
         <Tab.Navigator activeColor="purple" barStyle={{ backgroundColor: "white" }}>
             <Tab.Screen
                 name="Home"
-                component={UserSignUp}
+                component={NearShops}
                 options={{
                     tabBarLabel: "Home",
                     tabBarIcon: ({ color }) => (
@@ -26,7 +26,7 @@ function MyTabs() {
                 options={{
                     tabBarLabel: "Khaata",
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="book" color={color} size={26} />
+                        <MaterialCommunityIcons name="notebook" color={color} size={26} />
                     ),
                 }}
             />

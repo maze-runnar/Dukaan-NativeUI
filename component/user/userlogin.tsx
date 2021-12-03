@@ -4,6 +4,7 @@ import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 import { useNavigation } from "@react-navigation/native";
+import AsyncStorage from '@react-native-community/async-storage';
 
 const UserLogin = (props: any) => {
   let [username, setUsername] = React.useState("");
@@ -38,6 +39,13 @@ const UserLogin = (props: any) => {
         let x = await data.json();
         console.log(x?.["message"]);
         setErrorMsg(x?.["message"]);
+        if(data.status === 200) {
+            navigation.navigate("Dashboard");
+            await AsyncStorage.setItem("username", username);
+            await AsyncStorage.setItem("userid", x?.["id"]);
+            await AsyncStorage.setItem("isLoggedIn", "true");
+            console.log(await AsyncStorage.getItem("userid"),await AsyncStorage.getItem("username"),await AsyncStorage.getItem("password"));
+        }
         console.log("getting into then block", x);
       })
       .finally(() => {
