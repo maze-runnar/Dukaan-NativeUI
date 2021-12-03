@@ -1,56 +1,52 @@
 import React from 'react';
-import { StyleSheet, Button, View, SafeAreaView, Text, Alert, Pressable, Image,ImageBackground,TextInput} from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { useNavigation } from '@react-navigation/native';
+import {SafeAreaView, Text, Pressable, TextInput} from 'react-native';
+import styles  from '../../styles/signup';
+import API from '../../api';
+import  ENDPOINTS  from '../../endpoints';
 
-const styles = StyleSheet.create({
-  ButtonStyle: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 20,
-    elevation: 3,
-    borderColor: '#eba315',
-    color: '#eba315',
-    borderWidth: 2,
-    width: '50%',
-    bottom: 0,
-    top:"25%",
-  },
-  ImageStyle : {
-    alignItems: 'center',
-    justifyContent: 'center',
-    width:100,
-    height:100,
-    bottom: 20,
-    resizeMode: 'contain',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  input: {
-    height: 40,
-    margin: 12,
-    width: "80%",
-    borderTopWidth:0,
-    borderLeftWIdth:0,
-    borderRightWidth: 0,
-    borderBottomWidth:1.4,
-    borderRadius:2,
-    padding: 10,
-  }
-})
 
 const UserSignUp = (props: any) => {
-    const [username, onChangeText] = React.useState("");
-    const [password, onChangeNumber] = React.useState("");
+    let [username, onChangeText] = React.useState("");
+    let [password, onChangeNumber] = React.useState("");
+    let [errorMsg, setErrorMsg]= React.useState("");
 
-    const navigation = useNavigation();
+    const validateInput = () => {
+      if(checkPassword(password)) {
+        return true;
+      }
+    }
+
+    const userSignUP = async() => {
+        if(!validateInput()) {
+          console.log("returning from here", !validateInput);
+          return;
+        }
+        await fetch(API + ENDPOINTS.REGISTER, {
+        method: 'POST',
+        cache: 'no-cache',
+        headers: {
+          'Content-Type': 'application/json',
+          'allow-control-allow-origin': '*'
+        },
+        body: JSON.stringify({"username":username, "password_hash":password})
+      })
+      .then(async(data:any) => {
+        let x = await data.json();
+        console.log(x?.['message']);
+        console.log("getting into then block", x);
+      }).finally(() => {
+        console.log("getting into finally block");
+        username = "";
+        
+      })
+    }
+    function checkPassword(str:any)
+    {
+        let re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+        console.log(re.test(str));
+        return re.test(str);
+    }
+
     return (
       <SafeAreaView style={styles.container}>
         <TextInput
@@ -60,13 +56,14 @@ const UserSignUp = (props: any) => {
         value={username}
       />
       <TextInput
+        onBlur = {() => {checkPassword(password) === true? "not a valid password": "Valid";}}
         onChangeText={onChangeNumber}
         value={password}
         style={styles.input}
         placeholder="password"
         secureTextEntry
       />
-      <Pressable style={styles.ButtonStyle} onPress={() => navigation.navigate('Begin')}> 
+      <Pressable style={styles.ButtonStyle} onPress={() => userSignUP()}> 
           <Text style={{color: "purple"}}> Signup </Text>
         </Pressable>
       </SafeAreaView>
