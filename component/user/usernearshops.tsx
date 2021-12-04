@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Pressable, SafeAreaView } from "react-native";
+import { View, Text, TextInput, Pressable, SafeAreaView, AppRegistry } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const NearShops = () => {
     const [username, setUsername] = useState("");

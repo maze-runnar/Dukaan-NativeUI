@@ -6,16 +6,25 @@ import UserSignUp from './component/user/usersignup';
 import UserLogin from './component/user/userlogin';
 import MyTabs from './component/user/userdashboard';
 import NearShops from './component/user/usernearshops';
-import { AppRegistry } from 'react-native';
+import { AppRegistry, View } from 'react-native';
 
-export default function App() {
+export type RootStackParamList = {
+  Greeting: undefined;
+  UserSignUp: undefined;
+  UserLogin:undefined;
+  NearShops: undefined;
+  Dashboard: undefined;
+};
 
-  const Stack = createNativeStackNavigator();
+
+export default function DukaanUI() {
+  
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Begin" component={Greeting} />
+      <Stack.Navigator initialRouteName="Greeting">
+        <Stack.Screen name="Greeting" component={Greeting} />
         <Stack.Screen name="UserSignUp" component={UserSignUp} />
         <Stack.Screen name="UserLogin" component={UserLogin} />
         <Stack.Screen name="Dashboard" component={MyTabs} />
@@ -24,5 +33,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-AppRegistry.registerComponent('App', () => App);

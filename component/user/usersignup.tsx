@@ -1,5 +1,5 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
@@ -90,11 +90,10 @@ const UserSignUp = (props: any) => {
         placeholder="password"
         secureTextEntry
       />
-      <small style={{ color: "red" }}>{errorMsg}</small>
+      <Text style={{ color: "red" }}>{errorMsg}</Text>
       <Pressable style={styles.ButtonStyle} onPress={() => userSignUP()}>
         <Text style={{ color: "purple" }}> Signup </Text>
       </Pressable>
-      <br />
       <Text>Already a User?</Text>
       <Pressable
         style={{ bottom: 0 }}

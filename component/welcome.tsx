@@ -9,10 +9,12 @@ import {
   Pressable,
   Image,
   ImageBackground,
+  AppRegistry,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useNavigation } from "@react-navigation/native";
+import MyTabs from "./user/userdashboard";
 
 const styles = StyleSheet.create({
   ButtonStyle: {
@@ -64,7 +66,6 @@ const Greeting = (props: any) => {
       >
         <Text style={{ color: "purple" }}> MERCHANT </Text>
       </Pressable>
-      <br />
       <Pressable
         style={styles.ButtonStyle}
         onPress={() => navigation.navigate("UserSignUp")}
@@ -76,3 +77,4 @@ const Greeting = (props: any) => {
 };
 
 export default Greeting;
+

@@ -3,6 +3,7 @@ import React from "react";
 import UserSignUp from "./usersignup";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import NearShops from "./usernearshops";
+import { AppRegistry } from 'react-native';
 
 const Tab = createMaterialBottomTabNavigator();
 

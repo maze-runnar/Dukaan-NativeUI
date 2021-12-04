@@ -1,10 +1,11 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 import { useNavigation } from "@react-navigation/native";
-import AsyncStorage from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import MyTabs from "./userdashboard";
 
 const UserLogin = (props: any) => {
   let [username, setUsername] = React.useState("");
@@ -17,7 +18,7 @@ const UserLogin = (props: any) => {
     }
   };
   const navigation = useNavigation();
-  const userLogin = async () => {
+  const userLogin  = async ()  => {
     if (!validateInput()) {
       console.log(
         "Don't send post request for login, invalid username or password!",
@@ -90,7 +91,9 @@ const UserLogin = (props: any) => {
         placeholder="password"
         secureTextEntry
       />
-      <small style={{ color: "red" }}>{errorMsg}</small>
+      <Text>
+        {errorMsg}
+      </Text>
       <Pressable style={styles.ButtonStyle} onPress={() => userLogin()}>
         <Text style={{ color: "purple" }}> Login </Text>
       </Pressable>
