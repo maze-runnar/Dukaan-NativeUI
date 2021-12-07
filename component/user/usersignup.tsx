@@ -1,12 +1,16 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import response from "../../utils/data";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
-const UserSignUp = (props: any) => {
+type Props = NativeStackScreenProps<RootStackParamList, "UserSignUp">;
+
+const UserSignUp = ({ route, navigation }: Props) => {
   let [username, setUsername] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errorMsg, setErrorMsg] = React.useState("");
@@ -16,7 +20,6 @@ const UserSignUp = (props: any) => {
       return true;
     }
   };
-  const navigation = useNavigation();
   const userSignUP = async () => {
     if (!validateInput()) {
       console.log(
@@ -36,12 +39,12 @@ const UserSignUp = (props: any) => {
       body: JSON.stringify({ username: username, password_hash: password }),
     })
       .then(async (data: any) => {
-        console.log(data.status); // return 200, 403 
+        console.log(data.status); // return 200, 403
         let x = await data.json();
         console.log(x?.[response.DATA]);
         setErrorMsg(x?.[response.DATA]);
-        if(x[response.DATA] === response.SUCCESS) {
-          navigation.navigate("UserLogin")
+        if (x[response.DATA] === response.SUCCESS) {
+          navigation.navigate("UserLogin");
         }
         console.log("getting into then block", x);
       })

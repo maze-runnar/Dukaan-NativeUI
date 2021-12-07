@@ -1,54 +1,13 @@
 import React from "react";
-import {
-  StyleSheet,
-  Button,
-  View,
-  SafeAreaView,
-  Text,
-  Alert,
-  Pressable,
-  Image,
-  ImageBackground,
-  AppRegistry,
-} from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { useNavigation } from "@react-navigation/native";
-import MyTabs from "./user/userdashboard";
+import { View, Text, Pressable, Image } from "react-native";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../App";
+import styles from "../styles/signup";
 
-const styles = StyleSheet.create({
-  ButtonStyle: {
-    alignItems: "center",
-    justifyContent: "center",
-    paddingVertical: 12,
-    paddingHorizontal: 32,
-    borderRadius: 20,
-    elevation: 3,
-    borderColor: "#eba315",
-    color: "#eba315",
-    borderWidth: 2,
-    width: "90%",
-    bottom: 0,
-    top: "10%",
-  },
-  ImageStyle: {
-    alignItems: "center",
-    justifyContent: "center",
-    width: 100,
-    height: 100,
-    bottom: 20,
-    resizeMode: "contain",
-  },
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
+type Props = NativeStackScreenProps<RootStackParamList, "UserLogin">;
 
-const Greeting = (props: any) => {
-  const navigation = useNavigation();
+const Greeting = ({ route, navigation }: Props) => {
+  // const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <Image
@@ -61,13 +20,13 @@ const Greeting = (props: any) => {
         the deals from shop to shop.
       </Text>
       <Pressable
-        style={styles.ButtonStyle}
+        style={styles.GreetingButtonStyle}
         onPress={() => navigation.navigate("Dashboard")}
       >
         <Text style={{ color: "purple" }}> MERCHANT </Text>
       </Pressable>
       <Pressable
-        style={styles.ButtonStyle}
+        style={styles.GreetingButtonStyle}
         onPress={() => navigation.navigate("UserSignUp")}
       >
         <Text style={{ color: "purple" }}> USER </Text>
@@ -77,4 +36,3 @@ const Greeting = (props: any) => {
 };
 
 export default Greeting;
-

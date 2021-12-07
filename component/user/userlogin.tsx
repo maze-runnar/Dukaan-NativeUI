@@ -3,11 +3,16 @@ import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-nat
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
-import { useNavigation } from "@react-navigation/native";
+// import { useNavigation } from "@react-navigation/native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import MyTabs from "./userdashboard";
+// import MyTabs from "./userdashboard";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
 
-const UserLogin = (props: any) => {
+type Props = NativeStackScreenProps<RootStackParamList, 'UserLogin'>;
+
+
+const UserLogin = ({ route, navigation }: Props) => {
   let [username, setUsername] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errorMsg, setErrorMsg] = React.useState("");
@@ -17,8 +22,8 @@ const UserLogin = (props: any) => {
       return true;
     }
   };
-  const navigation = useNavigation();
-  const userLogin  = async ()  => {
+  // const navigation = useNavigation();
+  const userLogin = async () => {
     if (!validateInput()) {
       console.log(
         "Don't send post request for login, invalid username or password!",
@@ -40,12 +45,12 @@ const UserLogin = (props: any) => {
         let x = await data.json();
         console.log(x?.["message"]);
         setErrorMsg(x?.["message"]);
-        if(data.status === 200) {
-            navigation.navigate("Dashboard");
-            await AsyncStorage.setItem("username", username);
-            await AsyncStorage.setItem("userid", x?.["id"]);
-            await AsyncStorage.setItem("isLoggedIn", "true");
-            console.log(await AsyncStorage.getItem("userid"),await AsyncStorage.getItem("username"),await AsyncStorage.getItem("password"));
+        if (data.status === 200) {
+          navigation.navigate("Dashboard");
+          await AsyncStorage.setItem("username", username);
+          await AsyncStorage.setItem("userid", x?.["id"]);
+          await AsyncStorage.setItem("isLoggedIn", "true");
+          console.log(await AsyncStorage.getItem("userid"), await AsyncStorage.getItem("username"), await AsyncStorage.getItem("password"));
         }
         console.log("getting into then block", x);
       })
