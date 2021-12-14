@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Pressable, SafeAreaView, AppRegistry } from "react-native";
+import { View, Text, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+
+const LeftContent = (props:any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{backgroundColor: 'purple'}}/>
+const RightContentOpen = (props:any) => <div style={{backgroundColor:"#9be864", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px'}}><Text>Open</Text></div>
+const RightContentClosed = (props:any) => <div style={{backgroundColor:"#ff0000", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px'}}><Text style={{color:"white"}}>Closed</Text></div>
 
 
+                        
 const NearShops = () => {
     const [username, setUsername] = useState("");
     const [userid, setUserId] = useState("");
@@ -42,7 +48,7 @@ const NearShops = () => {
         })
     }
     return (
-        <SafeAreaView style={styles.container}>
+        <ScrollView>
             {currentPincode === null || currentPincode === "" ?
                 <View style={styles.container}>
                     <Text>Please Enter your pincode manually or allow location access.</Text>
@@ -57,14 +63,19 @@ const NearShops = () => {
                     </Pressable>
                     <small style={{ color: "green" }}> {errorMsg} </small>
                 </View> :
-                <View>
-                    <Text>
-                        DashBoard <br />
-                        NearBY Shops <br />
-                    </Text>
-                </View>
+                <ScrollView>
+                    {["1", "2", "3", "2", "3", "2", "3", "2", "3"].map((item, index) => {
+                        return (
+                            <Card style={{margin: "2px", borderRadius:"10px"}}>
+                                <Card.Title title="Shop Name" subtitle="Category" left={LeftContent} right={RightContentClosed}/>
+                                <Card.Actions>
+                                </Card.Actions>
+                            </Card>
+                        )
+                    })}
+                </ScrollView>
             }
-        </SafeAreaView>
+        </ScrollView>
     );
 };
 
