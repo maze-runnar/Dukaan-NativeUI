@@ -2,6 +2,7 @@ const ENDPOINTS = {
     LOGIN: "/api/v1/login",
     REGISTER: "/api/v1/auth",
     USER_DETAIL: "/api/v1/user/",
+    NEAR_BY_SHOPS: "/api/v1/nearby/",
     USER_PROFILE: "/user/profile",
     USER_PROFILE_UPDATE: "/user/profile/update",
     USER_PROFILE_UPDATE_PASSWORD: "/user/profile/update/password",
