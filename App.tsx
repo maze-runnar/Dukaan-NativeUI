@@ -7,6 +7,8 @@ import UserLogin from './component/user/userlogin';
 import MyTabs from './component/user/userdashboard';
 import NearShops from './component/user/usernearshops';
 import ShopDetails from './component/user/shopdetails';
+import UserProfile from './component/user/userprofile';
+import EditUserDetails from './component/user/edituserdetails';
 
 export type RootStackParamList = {
   Greeting: undefined;
@@ -15,6 +17,8 @@ export type RootStackParamList = {
   NearShops: undefined;
   Dashboard: undefined;
   ShopDetails: undefined;
+  UserProfile: undefined;
+  EditUserDetails: undefined;
 };
 
 
@@ -31,6 +35,8 @@ export default function DukaanUI() {
         <Stack.Screen name="Dashboard" component={MyTabs} />
         <Stack.Screen name="NearShops" component={NearShops} />
         <Stack.Screen name="ShopDetails" component={ShopDetails} initialParams={{itemId: 1}}/>
+        <Stack.Screen name="UserProfile" component={UserProfile} />
+        <Stack.Screen name="EditUserDetails" component={EditUserDetails} initialParams={{userId: 1}}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -16,7 +16,7 @@ const RightContentClosed = (props:any) => <div style={{backgroundColor:"#ff0000"
 type Props = NativeStackScreenProps<RootStackParamList, "NearShops">;
 
                         
-const NearShops = ({ route, navigation }: Props) => {
+const NearShops = ({ navigation }: Props) => {
     const [username, setUsername] = useState("");
     const [userid, setUserId] = useState("");
     const [pincode, setPincode] = useState("");

@@ -11,13 +11,12 @@ const currentUser = async()=> {
     if(id && id != "") {
         await fetch(API + ENDPOINTS.USER_DETAIL + id).then(async(res) => {
             user = await res.json();
-            console.log("User: ", user);
+            console.log("Auth Manager Session User: ", user);
         });
     }
     return user;
 }
 
-// currentUser();
 
 
 export default currentUser;
