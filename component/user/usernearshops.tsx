@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent } from "react-native";
+import { View,Button, Text, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 
@@ -85,15 +85,18 @@ const NearShops = ({ navigation }: Props) => {
                 <ScrollView>
                     {nearbyShops.map((x) => {
                         return (
-                            <Card style={{margin: "2px", borderRadius:"10px"}}>
-                                <Card.Title title="Shop Name" subtitle={x['location']} left={LeftContent} right={RightContentClosed}/>
-                                <Card.Actions>
-                                    <Button onPress={() => {
+                            <Card style={{margin: "5px", borderRadius:"10px", shadowColor: '#ffff00',
+                            shadowOffset: {width: 0, height: 10},
+                            shadowOpacity: 0.4,
+                            elevation: 1}}>
+                                <Card.Title title="Shop Name" subtitle={"📍: "+x['location']+ "\n" +"☎️: " + x['mobile']} left={LeftContent} right={RightContentClosed}/>
+                                <Button
+                                    onPress={() => {
                                         navigation.navigate('ShopDetails', {itemId: x['id']});
-                                        }}> 
-                                        <Text>Open </Text>
+                                        }}
+                                        title="View"
+                                        color="#800080"> 
                                     </Button>
-                                </Card.Actions>
                             </Card>
                         )
                     })}
