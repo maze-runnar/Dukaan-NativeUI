@@ -36,16 +36,17 @@ const UserProfile = ({ route, navigation } : Props) => {
             sleep(1000);
             setUsername(x?.['data']?.['username']);
             setPincode(x?.['data']['pincode']);
-            setMobile(x?.['data']['mobile'] ? x?.['data']['mobile'] : "Add mobile no.");
+            setMobile(x?.['data']['mobile']);
             setLocation(x?.['data']['location']);
             setUserId(id);
         };
         userValues();  
-    }, [username]);
+    }, [username, mobile, location, pincode]);
     
     return (
 		<SafeAreaView style={styles.container}>
             <Text>{pincode} </Text><Text>{mobile}</Text>
+            <Text>{location} </Text>
             <InitialIcon name={username}/>
             <Button onPress={() => {
                 navigation.navigate('EditUserDetails', {itemId: userid });

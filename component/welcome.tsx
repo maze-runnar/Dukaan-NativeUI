@@ -21,7 +21,7 @@ const Greeting = ({ route, navigation }: Props) => {
       </Text>
       <Pressable
         style={styles.GreetingButtonStyle}
-        onPress={() => navigation.navigate("Dashboard")}
+        onPress={() => navigation.navigate("MerchantSignUP")}
       >
         <Text style={{ color: "purple" }}> MERCHANT </Text>
       </Pressable>
