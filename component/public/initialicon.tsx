@@ -15,14 +15,19 @@ const InitialIcon = ({ name }:any) => {
     return (
       <View
         style={{
-          backgroundColor: 'blue',
+          marginTop:'-50px',
+          margin:'auto',
+          backgroundColor: 'purple',
           alignItems: 'center',
           justifyContent: 'center',
-          borderRadius: 30,
-          width: 50,
-          height: 50,
+          borderRadius: 60,
+          borderStyle: "solid",
+          borderWidth:5,
+          borderColor:'#db7d02',
+          width: 100,
+          height: 100
         }}>
-        <Text style={{ color: 'white', fontSize: 25 }}>{initials}</Text>
+        <Text style={{ color: 'white', fontSize: 55 }}>{initials}</Text>
       </View>
     );
   };
