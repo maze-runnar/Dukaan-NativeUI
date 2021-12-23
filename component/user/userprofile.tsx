@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View,SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { View,SafeAreaView, Text, Pressable, TextInput ,ScrollView} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -46,7 +46,7 @@ const UserProfile = ({ route, navigation } : Props) => {
     }, [username, mobile, location, pincode]);
     
     return (
-            <View>
+            <ScrollView>
                 <View style={{
                     backgroundColor: '#000000',
                     width: '100%',
@@ -96,7 +96,7 @@ const UserProfile = ({ route, navigation } : Props) => {
                             <Text style={{color:"white"}} > <MaterialCommunityIcons name="power-settings" size={18} />LogOut</Text>
                         </Button>
                 </View>
-            </View>
+            </ScrollView>
 		);
 };
 
