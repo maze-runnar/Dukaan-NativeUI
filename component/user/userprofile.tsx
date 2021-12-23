@@ -39,7 +39,7 @@ const UserProfile = ({ route, navigation } : Props) => {
             setPincode(x?.['data']['pincode']);
             setMobile(x?.['data']['mobile'] ? x?.['data']['mobile'] : "Add mobile no.");
             setLocation(x?.['data']['location']);
-            setpersonalNote(x?.['data']['personalNote']);
+            setpersonalNote(x?.['data']['personal_note']);
             setUserId(id);
         };
         userValues();  
