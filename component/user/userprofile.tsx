@@ -37,13 +37,13 @@ const UserProfile = ({ route, navigation } : Props) => {
             sleep(1000);
             setUsername(x?.['data']?.['username']);
             setPincode(x?.['data']['pincode']);
-            setMobile(x?.['data']['mobile'] ? x?.['data']['mobile'] : "Add mobile no.");
+            setMobile(x?.['data']['mobile']);
             setLocation(x?.['data']['location']);
             setpersonalNote(x?.['data']['personal_note']);
             setUserId(id);
         };
         userValues();  
-    }, [username]);
+    }, [username, mobile, location, pincode]);
     
     return (
             <View>
