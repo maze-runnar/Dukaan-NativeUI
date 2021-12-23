@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
 		bottom: 0,
 		top: "25%",
 	},
+	Text:{
+		fontFamily:"HelveticaNeue",
+		color: "#52575D"
+	},
 	GreetingButtonStyle: {
 		alignItems: "center",
 		justifyContent: "center",
@@ -59,6 +63,26 @@ const styles = StyleSheet.create({
 	map: {
 		width: Dimensions.get('window').width,
 		height: Dimensions.get('window').height,
+	},
+	statscontainer:{
+		flexDirection: "row",
+		alignSelf: "center",
+		marginTop: 32
+	},
+	statsbox: {
+		alignItems: "center",
+		flex: 1,
+		margin : 5,
+		backgroundColor: "#800080",
+		borderRadius:5
+	},
+	Float:{
+		alignItems: "center",
+		flex: 1,
+		margin : 5,
+		marginTop: 170,
+		backgroundColor: "red",
+		borderRadius:5
 	}
 })
 

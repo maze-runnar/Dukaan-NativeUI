@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { View,SafeAreaView, Text, Pressable, TextInput } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -10,6 +10,7 @@ import { RootStackParamList } from "../../App";
 import  currentUser from "../../auth/authmanager";
 import InitialIcon from "../public/initialicon";
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "UserProfile">;
@@ -38,21 +39,64 @@ const UserProfile = ({ route, navigation } : Props) => {
             setPincode(x?.['data']['pincode']);
             setMobile(x?.['data']['mobile'] ? x?.['data']['mobile'] : "Add mobile no.");
             setLocation(x?.['data']['location']);
+            setpersonalNote(x?.['data']['personal_note']);
             setUserId(id);
         };
         userValues();  
     }, [username]);
     
     return (
-		<SafeAreaView style={styles.container}>
-            <Text>{pincode} </Text><Text>{mobile}</Text>
-            <InitialIcon name={username}/>
-            <Button onPress={() => {
-                navigation.navigate('EditUserDetails', {itemId: userid });
-                }}> 
-                <Text>Edit Profile </Text>
-            </Button>
-		</SafeAreaView>	
+            <View>
+                <View style={{
+                    backgroundColor: '#000000',
+                    width: '100%',
+                    height: 100
+                }}>
+                </View>
+                <view style={{width:"100%", height:5, backgroundColor:"#db7d02" }}></view>
+                    <InitialIcon name={username}/>             
+                <View style={{margin: "auto",alignItems: 'center',
+          justifyContent: 'center'}}>
+                    <Text style={{textTransform:"uppercase" ,fontFamily:"HelveticaNeue",fontWeight:"200", fontSize:25 }}>{username}</Text>
+                </View>
+                <View style={{margin: 5}}>
+                    <Text style={{fontFamily:"HelveticaNeue",color: 'gray', fontSize:17 }}>
+                        <MaterialCommunityIcons name="map-marker-multiple" size={18} />
+                    {location} ,Pincode: {pincode} </Text>
+                    <Text style={{fontFamily:"HelveticaNeue",color: 'gray', fontSize:17 }}>
+                        <MaterialCommunityIcons name="phone" size={18} />    
+                    {mobile}</Text>
+                    {/* add personal note from database here */}
+                    <Text style={{fontFamily:"HelveticaNeue",color: 'gray', fontSize:17 }}>   
+                    {personalNote}</Text>
+                </View>
+                <View style={styles.statscontainer} >
+                    <View style={styles.statsbox}>
+                        <Button onPress={() => {
+                            navigation.navigate('EditUserDetails', {itemId: userid });
+                            }}
+                            color="#800080"> 
+                            <Text style={{color:"white"}}>My Khata</Text>
+                        </Button>
+                    </View>
+                    <View style={styles.statsbox}>
+                        <Button onPress={() => {
+                            navigation.navigate('EditUserDetails', {itemId: userid });
+                            }}
+                            color="#800080"> 
+                            <Text style={{color:"white"}} >Edit Profile</Text>
+                        </Button>
+                    </View>
+                </View>
+                <View style={styles.Float}>
+                        <Button onPress={() => {
+                            navigation.navigate('EditUserDetails', {itemId: userid });
+                            }}
+                            color="#800080"> 
+                            <Text style={{color:"white"}} > <MaterialCommunityIcons name="power-settings" size={18} />LogOut</Text>
+                        </Button>
+                </View>
+            </View>
 		);
 };
 
