@@ -14,6 +14,7 @@ import MerchantLogin from './component/merchant/merchantlogin';
 import MerchantDashboard from './component/merchant/merchantdashboard';
 import MerchantHome from './component/merchant/merchanthome';
 import RequiredMerchantInfo from './component/merchant/requiredinfo';
+import AddItem from './component/merchant/additem';
 
 export type RootStackParamList = {
   Greeting: undefined;
@@ -29,6 +30,7 @@ export type RootStackParamList = {
   MerchantDashboard: undefined;
   MerchantHome: undefined;
   RequiredMerchantInfo: undefined;
+  AddItem: undefined;
 };
 
 
@@ -52,6 +54,7 @@ export default function DukaanUI() {
         <Stack.Screen name="MerchantDashboard" component={MerchantDashboard} />
         <Stack.Screen name="MerchantHome" component={MerchantHome} />
         <Stack.Screen name="RequiredMerchantInfo" component={RequiredMerchantInfo} />
+        <Stack.Screen name="AddItem" component={AddItem} />
       </Stack.Navigator>
     </NavigationContainer>
   );

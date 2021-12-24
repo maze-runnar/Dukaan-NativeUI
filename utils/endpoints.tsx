@@ -20,7 +20,7 @@ const ENDPOINTS = {
     MERCHANT_PROFILE: "/merchant/profile",
     MERCHANT_PROFILE_UPDATE: "/api/v1/merchant/",
     MERCHANT_DETAIL: "/api/v1/merchant/",
-    MERCHANT_PROFILE_UPDATE_PASSWORD: "/merchant/profile/update/password",
+    NEW_ITEM: "/api/v1/item"
 };
 
 export default ENDPOINTS;

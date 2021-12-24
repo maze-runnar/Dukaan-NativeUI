@@ -3,38 +3,38 @@ import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-nat
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from "../../utils/api";
 
-const MerchantNotify = () => {
+const MerchantItems = () => {
 
   const [username, setUsername] = useState("");
-  const [refreshtime, setRefreshtime] = useState(0);
   const [errorMsg, setErrorMsg] = useState("");
-  const [notification, setNotification] = useState([]);
+  const [item, setItem] = useState([]);
 
   function sleep(ms: any) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
   useEffect(() => {
-    const userValues = async () => {
+    const merchantItems = async () => {
       const id: any = await AsyncStorage.getItem("userid");
-      fetch(API + "/api/v1/notification/" + id).then(async (res) => {
-        const notificationData = await res.json();
-        console.log("Notifications: ", notificationData);
-        setNotification(notificationData?.['data']);
+      fetch(API + "/api/v1/merchantitem/" + id).then(async (res) => {
+        const itemData = await res.json();
+        console.log("Notifications: ", itemData);
+        setItem(itemData?.['data']);
       });
+      await sleep(1000);
       console.log(username, "current user data for sesion");
     };
-    userValues();
-    setInterval(() => setRefreshtime(refreshtime + 1), 60000); // refresh time is 20 seconds
+    merchantItems();
     // setRefreshtime(refreshtime+1);
-  }, [refreshtime]);
+
+  }, []);
 
 
   return (
     <SafeAreaView>
-      {notification.map((x) => <Text>{x?.['msg']} <br /> </Text>)}
+      {item.map((x) => <Text>{x?.['name']} Available: {x?.['is_available'] ? "Yes" : "No"}<br /> </Text>)}
     </SafeAreaView>
   );
 }
 
-export default MerchantNotify;
+export default MerchantItems;
