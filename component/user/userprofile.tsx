@@ -87,6 +87,7 @@ const UserProfile = ({ route, navigation }: Props) => {
                         <Text style={{ color: "white" }} >Edit Profile</Text>
                     </Button>
                 </View>
+            </View>
             </ScrollView>
 		);
 };
