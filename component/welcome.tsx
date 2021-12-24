@@ -27,7 +27,7 @@ const Greeting = ({ route, navigation }: Props) => {
       </Pressable>
       <Pressable
         style={styles.GreetingButtonStyle}
-        onPress={() => navigation.navigate("UserSignUp")}
+        onPress={() => navigation.navigate("UserLogin")}
       >
         <Text style={{ color: "purple" }}> USER </Text>
       </Pressable>
