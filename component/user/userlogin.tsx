@@ -105,6 +105,13 @@ const UserLogin = ({ route, navigation }: Props) => {
       <Pressable style={styles.ButtonStyle} onPress={() => userLogin()}>
         <Text style={{ color: "purple" }}> Login </Text>
       </Pressable>
+      <Text>Not a User?</Text>
+      <Pressable
+        style={{ bottom: 0 }}
+        onPress={() => navigation.navigate("UserSignUp")}
+      >
+        <Text style={{ color: "purple" }}>SignUP</Text>
+      </Pressable>
     </SafeAreaView>
   );
 };

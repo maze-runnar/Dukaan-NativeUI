@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { View,SafeAreaView, Text, Pressable, TextInput ,ScrollView} from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -46,24 +46,22 @@ const UserProfile = ({ route, navigation }: Props) => {
     }, [username, mobile, location, pincode]);
 
     return (
-        <View>
-            <View style={{
-                backgroundColor: '#000000',
-                width: '100%',
-                height: 100
-            }}>
-            </View>
-            <view style={{ width: "100%", height: 5, backgroundColor: "#db7d02" }}></view>
-            <InitialIcon name={username} />
-            <View style={{
-                margin: "auto", alignItems: 'center',
-                justifyContent: 'center'
-            }}>
-                <Text style={{ textTransform: "uppercase", fontFamily: "HelveticaNeue", fontWeight: "200", fontSize: 25 }}>{username}</Text>
-            </View>
-            <View style={{ margin: 5 }}>
-                <Text style={{ fontFamily: "HelveticaNeue", color: 'gray', fontSize: 17 }}>
-                    <MaterialCommunityIcons name="map-marker-multiple" size={18} />
+            <ScrollView>
+                <View style={{
+                    backgroundColor: '#000000',
+                    width: '100%',
+                    height: 100
+                }}>
+                </View>
+                <view style={{width:"100%", height:5, backgroundColor:"#db7d02" }}></view>
+                    <InitialIcon name={username}/>             
+                <View style={{margin: "auto",alignItems: 'center',
+          justifyContent: 'center'}}>
+                    <Text style={{textTransform:"uppercase" ,fontFamily:"HelveticaNeue",fontWeight:"200", fontSize:25 }}>{username}</Text>
+                </View>
+                <View style={{margin: 5}}>
+                    <Text style={{fontFamily:"HelveticaNeue",color: 'gray', fontSize:17 }}>
+                        <MaterialCommunityIcons name="map-marker-multiple" size={18} />
                     {location} ,Pincode: {pincode} </Text>
                 <Text style={{ fontFamily: "HelveticaNeue", color: 'gray', fontSize: 17 }}>
                     <MaterialCommunityIcons name="phone" size={18} />
@@ -89,17 +87,8 @@ const UserProfile = ({ route, navigation }: Props) => {
                         <Text style={{ color: "white" }} >Edit Profile</Text>
                     </Button>
                 </View>
-            </View>
-            <View style={styles.Float}>
-                <Button onPress={() => {
-                    navigation.navigate('EditUserDetails', { itemId: userid });
-                }}
-                    color="#800080">
-                    <Text style={{ color: "white" }} > <MaterialCommunityIcons name="power-settings" size={18} />LogOut</Text>
-                </Button>
-            </View>
-        </View>
-    );
+            </ScrollView>
+		);
 };
 
 export default UserProfile;
