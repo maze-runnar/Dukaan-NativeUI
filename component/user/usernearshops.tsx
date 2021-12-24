@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View,Button, Text, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent } from "react-native";
+import { View, Button, Text, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -9,13 +9,13 @@ import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 
-const LeftContent = (props:any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{backgroundColor: 'purple'}}/>
-const RightContentOpen = (props:any) => <div style={{backgroundColor:"#9be864", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px'}}><Text>Open</Text></div>
-const RightContentClosed = (props:any) => <div style={{backgroundColor:"#ff0000", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px'}}><Text style={{color:"white"}}>Closed</Text></div>
+const LeftContent = (props: any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{ backgroundColor: 'purple' }} />
+const RightContentOpen = (props: any) => <div style={{ backgroundColor: "#9be864", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px' }}><Text>Open</Text></div>
+const RightContentClosed = (props: any) => <div style={{ backgroundColor: "#ff0000", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px' }}><Text style={{ color: "white" }}>Closed</Text></div>
 
 type Props = NativeStackScreenProps<RootStackParamList, "NearShops">;
 
-                        
+
 const NearShops = ({ navigation }: Props) => {
     const [username, setUsername] = useState("");
     const [userid, setUserId] = useState("");
@@ -24,15 +24,15 @@ const NearShops = ({ navigation }: Props) => {
     const [errorMsg, setErrorMsg] = useState("");
     const [nearbyShops, setnearbyShops] = useState([]);
 
-    function sleep(ms:any) {
+    function sleep(ms: any) {
         return new Promise(resolve => setTimeout(resolve, ms));
-     }
+    }
 
     useEffect(() => {
         const userValues = async () => {
             let x: any = await currentUser();
             const id: any = await AsyncStorage.getItem("userid");
-            fetch(API + ENDPOINTS.NEAR_BY_SHOPS + id).then(async(res) => {
+            fetch(API + ENDPOINTS.NEAR_BY_SHOPS + id).then(async (res) => {
                 const nearshops = await res.json();
                 setnearbyShops(nearshops['data']);
                 console.log("Shops: ", nearbyShops);
@@ -46,7 +46,7 @@ const NearShops = ({ navigation }: Props) => {
         userValues();
         // const fetchNearShops = async () => { 
         //     const id: any = await AsyncStorage.getItem("userid");
-            
+
         // };
         // fetchNearShops();
     }, [userid, currentPincode]);
@@ -85,18 +85,20 @@ const NearShops = ({ navigation }: Props) => {
                 <ScrollView>
                     {nearbyShops.map((x) => {
                         return (
-                            <Card style={{margin: "5px", borderRadius:"10px", shadowColor: '#ffff00',
-                            shadowOffset: {width: 0, height: 10},
-                            shadowOpacity: 0.4,
-                            elevation: 1}}>
-                                <Card.Title title="Shop Name" subtitle={"📍: "+x['location']+ "\n" +"☎️: " + x['mobile']} left={LeftContent} right={RightContentClosed}/>
+                            <Card style={{
+                                margin: "5px", borderRadius: "10px", shadowColor: '#ffff00',
+                                shadowOffset: { width: 0, height: 10 },
+                                shadowOpacity: 0.4,
+                                elevation: 1
+                            }}>
+                                <Card.Title title="Shop Name" subtitle={"📍: " + x['location'] + "\n" + "☎️: " + x['mobile']} left={LeftContent} right={RightContentClosed} />
                                 <Button
                                     onPress={() => {
-                                        navigation.navigate('ShopDetails', {itemId: x['id']});
-                                        }}
-                                        title="View"
-                                        color="#800080"> 
-                                    </Button>
+                                        navigation.navigate('ShopDetails', { itemId: x['id'] });
+                                    }}
+                                    title="View"
+                                    color="#800080">
+                                </Button>
                             </Card>
                         )
                     })}

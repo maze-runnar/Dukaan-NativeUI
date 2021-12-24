@@ -18,7 +18,8 @@ const ENDPOINTS = {
     MERCHANT_LOGIN: "/api/v1/merchant/login",
     MERCHANT_REGISTER: "/api/v1/merchant/auth",
     MERCHANT_PROFILE: "/merchant/profile",
-    MERCHANT_PROFILE_UPDATE: "/merchant/profile/update",
+    MERCHANT_PROFILE_UPDATE: "/api/v1/merchant/",
+    MERCHANT_DETAIL: "/api/v1/merchant/",
     MERCHANT_PROFILE_UPDATE_PASSWORD: "/merchant/profile/update/password",
 };
 

@@ -1,47 +1,26 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 // import { useNavigation } from "@react-navigation/native";
-import response from "../../utils/data";
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import MyTabs from "./userdashboard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import currentUser from "../../auth/authmanager";
+
+type Props = NativeStackScreenProps<RootStackParamList, 'MerchantLogin'>;
 
 
-const EditUserDetails = ({ route }: any) => {
-	const { userId } = route.params;
-	let [username, setUsername] = React.useState("");
+const RequiredMerchantInfo = () => {
 	let [location, setLocation] = React.useState("");
 	let [mobile, setMobile] = React.useState("");
 	let [pincode, setPincode] = React.useState("");
-	let [errorMsg, setErrorMsg] = React.useState("");
-
-	function sleep(ms: any) {
-		return new Promise(resolve => setTimeout(resolve, ms));
-	}
-
-	useEffect(() => {
-		const userValues = async () => {
-			let x: any = await currentUser();
-			const id: any = await AsyncStorage.getItem("userid");
-			sleep(1000);
-			setUsername(x?.['data']?.['username']);
-			setPincode(x?.['data']['pincode']);
-			setMobile(x?.['data']['mobile']);
-			setLocation(x?.['data']['location']);
-		};
-		userValues();
-	}, [username]);
-
-
 
 	const update = async () => {
 		console.log(mobile, location);
 		const id: any = await AsyncStorage.getItem("userid");
-		await fetch(API + '/api/v1/user/' + id, {
+		await fetch(API + ENDPOINTS.MERCHANT_PROFILE_UPDATE + id, {
 			method: "PUT",
 			cache: "no-cache",
 			headers: {
@@ -53,7 +32,7 @@ const EditUserDetails = ({ route }: any) => {
 			.then(async (data: any) => {
 				console.log(data.status); // return 200, 403
 				let x = await data.json();
-				console.log(x?.[response.DATA]);
+				// console.log(x?.[response.DATA]);
 				// setErrorMsg(x?.[response.DATA]);
 				// if (x[response.DATA] === response.SUCCESS) {
 				//   navigation.navigate("UserLogin");
@@ -97,5 +76,4 @@ const EditUserDetails = ({ route }: any) => {
 	);
 };
 
-export default EditUserDetails;
-
+export default RequiredMerchantInfo;
