@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import MerchantNotify from "./notifications";
-import { SafeAreaView, Text, View } from "react-native";
+import { Button, SafeAreaView, Text, View } from "react-native";
 import RequiredMerchantInfo from "./requiredinfo";
 import currentMerchant from "../../auth/merchantauthmanager";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
+import { RootStackParamList } from "../../App";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import MerchantItems from "./merchantItems";
 
-const MerchantHome = () => {
+
+type Props = NativeStackScreenProps<RootStackParamList, "MerchantHome">;
+
+
+const MerchantHome = ({ navigation }: Props) => {
     const [pincode, setPincode] = useState("");
     const [mobile, setMobile] = useState("");
     const [location, setLocation] = useState("");
@@ -35,6 +42,15 @@ const MerchantHome = () => {
             {(location !== '' && mobile !== "" && pincode !== "") ?
                 <View style={{ height: '50%' }}>
                     <MerchantNotify />
+                    <Button
+                        onPress={() => {
+                            navigation.navigate('AddItem');
+                        }}
+                        title="New Item"
+                        color="#800080">
+                    </Button>
+                    <Text style={{ fontSize: "20px" }}>ITEMS: </Text>
+                    <MerchantItems />
                 </View> :
                 <View>
                     <RequiredMerchantInfo />
