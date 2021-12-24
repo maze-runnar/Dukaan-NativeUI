@@ -6,10 +6,10 @@ import ENDPOINTS from '../utils/endpoints';
 
 let user = "";
 
-const currentUser = async()=> {
-    const id = await  AsyncStorage.getItem("userid");
-    if(id && id != "") {
-        await fetch(API + ENDPOINTS.USER_DETAIL + id).then(async(res) => {
+const currentUser = async () => {
+    const id = await AsyncStorage.getItem("userid");
+    if (id && id != "") {
+        await fetch(API + ENDPOINTS.USER_DETAIL + id).then(async (res) => {
             user = await res.json();
             console.log("Auth Manager Session User: ", user);
         });

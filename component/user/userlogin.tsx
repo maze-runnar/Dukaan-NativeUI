@@ -24,7 +24,7 @@ const UserLogin = ({ route, navigation }: Props) => {
   };
   // const navigation = useNavigation();
   const userLogin = async () => {
-    if(username === "sonu") { // admin testing
+    if (username === "sonu") { // admin testing
       navigation.navigate("Dashboard");
     }
     if (!validateInput()) {

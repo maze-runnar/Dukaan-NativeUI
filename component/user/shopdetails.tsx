@@ -9,13 +9,13 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 
 
-const ShopDetails = ({ route } : any) => {
+const ShopDetails = ({ route }: any) => {
 	const { itemId } = route.params;
 	return (
 		<SafeAreaView style={styles.container}>
 			{itemId}
-		</SafeAreaView>	
-		);
+		</SafeAreaView>
+	);
 };
 
 export default ShopDetails;

@@ -12,10 +12,10 @@ const MerchantHome = () => {
     const [mobile, setMobile] = useState("");
     const [location, setLocation] = useState("");
 
-    function sleep(ms:any) {
+    function sleep(ms: any) {
         return new Promise(resolve => setTimeout(resolve, ms));
     }
-    
+
     useEffect(() => {
         const userValues = async () => {
             let x: any = await currentMerchant();
@@ -28,17 +28,17 @@ const MerchantHome = () => {
         };
         userValues();
     }, [mobile, location]);
-    
+
     //will use useeffect here to check if number, pincode and location is entered
     return (
         <SafeAreaView>
-            { (location !== '' &&  mobile !== "" && pincode !== "") ? 
-            <View style={{height: '50%'}}>
-                <MerchantNotify />
-            </View> : 
-            <View>
-                <RequiredMerchantInfo />
-            </View>
+            {(location !== '' && mobile !== "" && pincode !== "") ?
+                <View style={{ height: '50%' }}>
+                    <MerchantNotify />
+                </View> :
+                <View>
+                    <RequiredMerchantInfo />
+                </View>
             }
         </SafeAreaView>
     );
