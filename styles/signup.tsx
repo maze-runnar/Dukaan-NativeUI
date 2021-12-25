@@ -83,6 +83,14 @@ const styles = StyleSheet.create({
 		marginTop: 170,
 		backgroundColor: "red",
 		borderRadius:5
+	},
+	cardcenters:{
+		alignItems: "center",
+		margin: 2,
+		textAlign:'center',
+		borderStyle: "solid",
+        borderWidth:1,
+        borderColor:'#faea84',
 	}
 })
 

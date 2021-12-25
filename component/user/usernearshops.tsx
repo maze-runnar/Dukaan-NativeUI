@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View,Button, Text, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent } from "react-native";
+import { View,Button, Text, TextInput, Pressable,Image, SafeAreaView, ScrollView, ImageBackground, SliderComponent } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const LeftContent = (props:any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{backgroundColor: 'purple'}}/>
 const RightContentOpen = (props:any) => <div style={{backgroundColor:"#9be864", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px'}}><Text>Open</Text></div>
@@ -68,25 +69,43 @@ const NearShops = ({ navigation }: Props) => {
     }
     return (
         <ScrollView>
-            {currentPincode === null || currentPincode === "" ?
-                <View style={styles.container}>
-                    <Text>Please Enter your pincode manually or allow location access.</Text>
-                    <TextInput
-                        style={styles.input}
-                        onChangeText={setPincode}
-                        placeholder="Pincode"
-                        value={pincode}
-                    />
-                    <Pressable style={styles.ButtonStyle} onPress={() => savePincode()}>
-                        <Text style={{ color: "purple" }}> save </Text>
-                    </Pressable>
-                    <small style={{ color: "green" }}> {errorMsg} </small>
-                </View> :
+                <ScrollView pagingEnabled horizontal={true} showsHorizontalScrollIndicator ={false}>
+
+                <View style={styles.cardcenters}>
+                    <MaterialCommunityIcons name="dresser" size={26} />
+                        <Text> All </Text>
+                </View>
+                <View style={styles.cardcenters} >
+                    <MaterialCommunityIcons name="food" size={26} />
+                    <Text> Grocery </Text>
+                </View>
+                <View style={styles.cardcenters} >
+                    <MaterialCommunityIcons name="bag-checked" size={26} />
+                    <Text> Fashion </Text>
+                </View>
+                <View style={styles.cardcenters} >
+                    <MaterialCommunityIcons name="electric-switch" size={26} />
+                    <Text> Electronics </Text>
+                </View>
+                <View style={styles.cardcenters} >
+                    <MaterialCommunityIcons name="medical-bag" size={26} />
+                    <Text> Medical </Text>
+                </View>
+                <View style={styles.cardcenters} >
+                    <MaterialCommunityIcons name="star-face" size={26} />
+                    <Text> Beauty </Text>
+                </View>
+                <View style={styles.cardcenters} >
+                    <MaterialCommunityIcons name="pinwheel" size={26} />
+                    <Text> Toy </Text>
+                </View>
+
+                </ScrollView>
                 <ScrollView>
                     {nearbyShops.map((x) => {
                         return (
                             <Card style={{margin: "5px", borderRadius:"10px", shadowColor: '#ffff00',
-                            shadowOffset: {width: 0, height: 10},
+                            shadowOffset: {width: 0, height: 5},
                             shadowOpacity: 0.4,
                             elevation: 1}}>
                                 <Card.Title title="Shop Name" subtitle={"📍: "+x['location']+ "\n" +"☎️: " + x['mobile']} left={LeftContent} right={RightContentClosed}/>
@@ -101,7 +120,6 @@ const NearShops = ({ navigation }: Props) => {
                         )
                     })}
                 </ScrollView>
-            }
         </ScrollView>
     );
 };
