@@ -1,11 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, Pressable, TextInput, AppRegistry, View } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput, AppRegistry, View, Button } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
+import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import { RootStackParamList } from "../../App";
+import { useNavigation } from "@react-navigation/native";
 
-const MerchantShops = () => {
+type Props = NativeStackScreenProps<RootStackParamList, "MerchantShops">;
 
+const MerchantShops = ({ route, navigation }: Props) => {
+  const nav = useNavigation();
   const [username, setUsername] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
   const [shop, setShop] = useState([]);
@@ -28,15 +33,24 @@ const MerchantShops = () => {
     merchantShops();
     // setRefreshtime(refreshtime+1);
 
-  }, []);
+  }, [navigation]);
 
+  const openShop = async (id:any) => {
+    await AsyncStorage.setItem("openedShopId", id);
+    nav.navigate("MerchantShopDetail");
+  }
 
   return (
     <SafeAreaView>
       {shop.map((x) => 
       <View>
-        <Text>{x?.['name']}  {x?.['mobile']} {x?.['description']} {x?.["pincode"]}<br /> </Text>
-        <Text>Open this shop workspace..</Text>
+        <Text>{x?.['name']} {x?.['id']} {x?.['mobile']} {x?.['description']} {x?.["pincode"]}<br /> </Text>
+        <Button onPress={() => {
+              openShop(x['id'])
+            }}
+            color="#800080"
+            title="Open">
+        </Button>
       </View>
       )}
     </SafeAreaView>
