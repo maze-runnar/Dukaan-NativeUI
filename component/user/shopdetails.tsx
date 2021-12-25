@@ -17,7 +17,6 @@ const imagess = [
 	'https://media.istockphoto.com/photos/indian-shop-picture-id843318958?k=20&m=843318958&s=170667a&w=0&h=8HDHx4OMKg190BMdRudJ5Xn20Hgcl5kShFY2JYjwq7E='
 ]
 
-
 const ShopDetails = ({ route } : any) => {
 	const state = {
 		active : 0
