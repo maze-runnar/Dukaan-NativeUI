@@ -8,7 +8,7 @@ import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 import { RootStackParamList } from "../../App";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import MerchantItems from "./merchantItems";
+import MerchantShops from "./merchantshops";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "MerchantHome">;
@@ -34,26 +34,33 @@ const MerchantHome = ({ navigation }: Props) => {
             console.log(x, "current user data for sesion");
         };
         userValues();
-    }, [mobile, location]);
+
+    }, [mobile, location, navigation]);
 
     //will use useeffect here to check if number, pincode and location is entered
     return (
         <SafeAreaView>
-            {(location !== '' && mobile !== "" && pincode !== "") ?
+            {((location !== '' && location !== null && location !== undefined) && (!!mobile && mobile !== "") && pincode !== "") ?
                 <View style={{ height: '50%' }}>
-                    <MerchantNotify />
                     <Button
                         onPress={() => {
-                            navigation.navigate('AddItem');
+                            navigation.navigate('AddShop');
                         }}
-                        title="New Item"
+                        title="New Shop +"
                         color="#800080">
                     </Button>
-                    <Text style={{ fontSize: "20px" }}>ITEMS: </Text>
-                    <MerchantItems />
+                    <Text style={{ fontSize: "20px" }}>Shops: </Text>
+                    <MerchantShops />
                 </View> :
                 <View>
-                    <RequiredMerchantInfo />
+                    <Text style={{color:"red"}}>Fill required Info info to proceed...</Text>
+                    <Button
+                        onPress={() => {
+                            navigation.navigate('RequiredMerchantInfo');
+                        }}
+                        title="Click Here"
+                        color="#800080">
+                    </Button>
                 </View>
             }
         </SafeAreaView>

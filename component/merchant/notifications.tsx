@@ -27,7 +27,7 @@ const MerchantNotify = () => {
     userValues();
     setInterval(() => setRefreshtime(refreshtime + 1), 60000); // refresh time is 20 seconds
     // setRefreshtime(refreshtime+1);
-  }, [refreshtime]);
+  }, []);
 
 
   return (
