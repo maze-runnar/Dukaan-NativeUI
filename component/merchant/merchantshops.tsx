@@ -37,7 +37,7 @@ const MerchantShops = ({ route, navigation }: Props) => {
 
   const openShop = async (id:any) => {
     await AsyncStorage.setItem("openedShopId", id);
-    nav.navigate("MerchantShopDetail");
+    nav.navigate("ShopDashboard");
   }
 
   return (
