@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput, AppRegistry, View, FlatList } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from "../../utils/api";
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
 const MerchantNotify = () => {
 
@@ -32,7 +33,31 @@ const MerchantNotify = () => {
 
   return (
     <SafeAreaView>
-      {notification.map((x) => <Text>{x?.['msg']} <br /> </Text>)}
+      {/* {notification.map((x) => <Text>{x?.['msg']} <br /> </Text>)} */}
+      <FlatList
+        data={notification}
+        renderItem={({item}) => (
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'column',
+              margin: 10,
+              backgroundColor: "#38a3f5",
+              height: 20,
+              width: 250,
+              borderRadius: 10,
+              justifyContent: 'center',
+              alignItems: 'center',  
+              padding: 20,
+              margin: 20         
+            }}>
+            <Text>{item.msg}</Text>
+          </View>
+        )}
+        //Setting the number of column
+        numColumns={1}
+        keyExtractor={(item, index) => index}
+      />
     </SafeAreaView>
   );
 }

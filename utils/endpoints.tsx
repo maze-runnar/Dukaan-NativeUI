@@ -6,7 +6,7 @@ const ENDPOINTS = {
     NOTIFICATION_LIST:"/api/v1/notification/", //<merchantid>
     NEAR_BY_SHOPS: "/api/v1/shop/nearby/", //<userid>
     NEW_SHOP: "/api/v1/merchant/shop/new", 
-    SHOP_DETAIL: "/api/v1/shop/", //<shopid>
+    SHOP_DETAIL: "/api/v1/shop/", //<shopid> complete api /api/v1/shop/shopid
     SHOP_LIST: "/api/v1/merchant/shops/", //<merchantid>
     MERCHANT_LOGIN: "/api/v1/merchant/login",
     MERCHANT_REGISTER: "/api/v1/merchant/auth",

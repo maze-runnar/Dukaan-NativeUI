@@ -21,15 +21,16 @@ const NearShops = ({ navigation }: Props) => {
     const [username, setUsername] = useState("");
     const [userid, setUserId] = useState("");
     const [pincode, setPincode] = useState("");
-    const [currentPincode, setCurrentPincode] = useState("");
+    const [currentPincode, setCurrentPincode] = useState(""); //let's say we need opening_time info here
+    const [openingTime, setOpeningTime] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
-    const [nearbyShops, setnearbyShops] = useState([]);
+    const [nearbyShops, setnearbyShops] = useState([]); // using states in functional component
 
     function sleep(ms: any) {
-        return new Promise(resolve => setTimeout(resolve, ms));
+        return new Promise(resolve => setTimeout(resolve, ms)); // sleep function to later use loading screen
     }
 
-    useEffect(() => {
+    useEffect(() => { // lifecycle in funcional component 
         const userValues = async () => {
             let x: any = await currentUser();
             const id: any = await AsyncStorage.getItem("userid");
@@ -41,6 +42,7 @@ const NearShops = ({ navigation }: Props) => {
             setCurrentPincode(x?.['data']['pincode']);
             await sleep(1000);
             setUsername(x?.['data']['username']);
+            setOpeningTime(x?.['data']['opening_time']) // now where data came from, opening_time is key of that dictionary 
             setUserId(id);
             console.log(username, "current user data for sesion");
         };
@@ -63,7 +65,7 @@ const NearShops = ({ navigation }: Props) => {
             body: JSON.stringify({ pincode: pincode }),
         }).then((res) => {
             if (res.status === 200) {
-                setErrorMsg("pincode updated successfully.")
+                setErrorMsg("pincode updated successfully."); //this is to set the error/success msg that any event is completed
             }
         })
     }
