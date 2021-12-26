@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { View, Switch, TextInput, Text, Pressable } from 'react-native';
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
+import styles from "../../../styles/signup";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const AddItem = () => {

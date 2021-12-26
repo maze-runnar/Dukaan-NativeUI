@@ -44,7 +44,7 @@ const MerchantSignUP = ({ route, navigation }: Props) => {
         console.log(x?.[response.DATA]);
         setErrorMsg(x?.[response.DATA]);
         if (data.status === 200) {
-          navigation.navigate("MerchantLogin");
+          navigation.navigate("RequiredMerchantInfo");
         }
         console.log("getting into then block", x);
       })

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import API from "../../utils/api";
+import API from "../../../utils/api";
 
-const MerchantItems = () => {
+const ShopItems = () => {
 
   const [username, setUsername] = useState("");
   const [errorMsg, setErrorMsg] = useState("");
@@ -37,4 +37,4 @@ const MerchantItems = () => {
   );
 }
 
-export default MerchantItems;
+export default ShopItems;
