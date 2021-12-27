@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SafeAreaView, Text, Pressable, TextInput, AppRegistry, View, FlatList } from "react-native";
+import { SafeAreaView, Text, Pressable, TextInput, AppRegistry, View, FlatList, Dimensions } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import API from "../../utils/api";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
@@ -30,10 +30,12 @@ const MerchantNotify = () => {
     // setRefreshtime(refreshtime+1);
   }, []);
 
+  const { width, height } = Dimensions.get('window');
 
   return (
     <SafeAreaView>
       {/* {notification.map((x) => <Text>{x?.['msg']} <br /> </Text>)} */}
+      <Text>Notifications: </Text>
       <FlatList
         data={notification}
         renderItem={({item}) => (
@@ -41,17 +43,19 @@ const MerchantNotify = () => {
             style={{
               flex: 1,
               flexDirection: 'column',
-              margin: 10,
-              backgroundColor: "#38a3f5",
+              margin: 5,
+              backgroundColor: item.is_read ? "#f5eeed" : "#38a3f5",
               height: 20,
-              width: 250,
+              width: width - 10,
               borderRadius: 10,
               justifyContent: 'center',
               alignItems: 'center',  
-              padding: 20,
-              margin: 20         
+              padding: 10,
             }}>
-            <Text>{item.msg}</Text>
+            <Text>
+              {/* <MaterialCommunityIcons name="bell" size={10} />  */}
+              {item.msg}
+            </Text>
           </View>
         )}
         //Setting the number of column
