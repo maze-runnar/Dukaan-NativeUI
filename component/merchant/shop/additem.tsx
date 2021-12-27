@@ -72,14 +72,6 @@ const AddItem = () => {
                 placeholder="Min Order amount for item"
             />
             
-            <TextInput
-                onChangeText={setDescription}
-                value={description}
-                style={styles.input}
-                multiline={true}
-                numberOfLines={7}
-                placeholder="Description"
-            />
             <Text>Is Available: </Text>
             <Switch
                 trackColor={{ false: "#767577", true: "#81b0ff" }}
