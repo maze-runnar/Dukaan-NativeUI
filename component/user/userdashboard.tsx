@@ -9,7 +9,7 @@ const Tab = createMaterialBottomTabNavigator();
 
 function MyTabs() {
     return (
-        <Tab.Navigator activeColor="purple" barStyle={{ backgroundColor: "white" }}>
+        <Tab.Navigator activeColor="purple" barStyle={{ backgroundColor: "#dbd5d5" }}>
             <Tab.Screen
                 name="Home"
                 component={NearShops}
