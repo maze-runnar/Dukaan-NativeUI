@@ -42,6 +42,7 @@ const MerchantHome = ({ navigation }: Props) => {
         <SafeAreaView>
             {((location !== '' && location !== null && location !== undefined) && (!!mobile && mobile !== "") && pincode !== "") ?
                 <View style={{ height: '50%' }}>
+                    <MerchantNotify />
                     <Button
                         onPress={() => {
                             navigation.navigate('AddShop');

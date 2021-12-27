@@ -8,11 +8,15 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const AddItem = () => {
     const [isAvailable, setisAvailable] = useState(true);
     const [itemName, setItemName] = useState("");
+    const [description, setDescription] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
+    const [maxOrderAmount, setMaxOrderAmount] = useState("");
+    const [minOrderAmount, setMinOrderAmount] = useState("");
+
     const toggleSwitch = () => setisAvailable(previousState => !previousState);
 
     const newItem = async () => {
-        const merchantId: any = await AsyncStorage.getItem("userid");
+        const shopId: any = await AsyncStorage.getItem("openedShopId");
         await fetch(API + ENDPOINTS.NEW_ITEM, {
             method: "POST",
             cache: "no-cache",
@@ -20,7 +24,7 @@ const AddItem = () => {
                 "Content-Type": "application/json",
                 "allow-control-allow-origin": "*",
             },
-            body: JSON.stringify({ name: itemName, is_available: isAvailable, merchant_id: merchantId }),
+            body: JSON.stringify({ name: itemName, is_available: isAvailable, shop_id: shopId, description: description }),
         })
             .then(async (data: any) => {
                 console.log(data.status); // return 200, 403
@@ -47,6 +51,27 @@ const AddItem = () => {
                 style={styles.input}
                 placeholder="Item"
             />
+            <TextInput
+                onChangeText={setDescription}
+                value={description}
+                style={styles.input}
+                multiline={true}
+                numberOfLines={7}
+                placeholder="Description"
+            />
+            <TextInput
+                onChangeText={setMaxOrderAmount}
+                value={maxOrderAmount}
+                style={styles.input}
+                placeholder="Max Order amount for item"
+            />
+            <TextInput
+                onChangeText={setMinOrderAmount}
+                value={minOrderAmount}
+                style={styles.input}
+                placeholder="Min Order amount for item"
+            />
+            
             <Text>Is Available: </Text>
             <Switch
                 trackColor={{ false: "#767577", true: "#81b0ff" }}

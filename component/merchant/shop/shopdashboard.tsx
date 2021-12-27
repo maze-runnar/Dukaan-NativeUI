@@ -26,9 +26,9 @@ const ShopDashboard = () => {
     let items = [{
       id: 1,
       color: "red",
-      text: "Notifications",
-      icon: "bell-outline",
-      location: "",
+      text: "Add Item",
+      icon: "tray-plus",
+      location: "AddItem",
     },
     {
       id: 2,
