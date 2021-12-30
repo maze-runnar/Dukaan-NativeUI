@@ -35,7 +35,7 @@ const ShopDashboard = () => {
       color: "green",
       text: "Items",
       icon: "cart-outline",
-      location: "MerchantShopDetail"
+      location: "ShopItems"
     },
     {
       id: 3,
@@ -49,7 +49,7 @@ const ShopDashboard = () => {
       color: "orange",
       text: "Khata",
       icon: "notebook-outline",
-      location: "MerchantShopDetail"
+      location: "KhataDashboard"
     }]
     setDataSource(items);
   }, [navigation]);

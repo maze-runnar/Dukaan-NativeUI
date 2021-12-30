@@ -24,7 +24,7 @@ const AddItem = () => {
                 "Content-Type": "application/json",
                 "allow-control-allow-origin": "*",
             },
-            body: JSON.stringify({ name: itemName, is_available: isAvailable, shop_id: shopId, description: description }),
+            body: JSON.stringify({ name: itemName, is_available: isAvailable, shop_id: shopId, description: description, max_order_amount: maxOrderAmount, min_order_amount: minOrderAmount }),
         })
             .then(async (data: any) => {
                 console.log(data.status); // return 200, 403
