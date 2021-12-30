@@ -48,9 +48,10 @@ const MerchantHome = ({ navigation }: Props) => {
                             navigation.navigate('AddShop');
                         }}
                         title="New Shop +"
-                        color="#800080">
+                        color="#800080"
+                    >
                     </Button>
-                    <Text style={{ fontSize: "20px" }}>Shops: </Text>
+                    <Text style={{ fontSize: 20 }}>Shops: </Text>
                     <MerchantShops />
                 </View> :
                 <View>

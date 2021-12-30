@@ -18,7 +18,7 @@ const MerchantShopDetail = () => {
         const shop = async () => {
             const shopid:any = await AsyncStorage.getItem("openedShopId");
             setShopId(shopid);
-            await fetch(API + ENDPOINTS.ITEM_LIST + shopId).then(async (res) => {
+            await fetch(API + ENDPOINTS.ITEM_LIST + shopid).then(async (res) => {
                 const items = await res.json();
                 console.log("Shop Items : ", items);
             });

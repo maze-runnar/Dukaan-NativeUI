@@ -19,6 +19,9 @@ import AddShop from './components/merchant/addshop';
 import MerchantShops from './components/merchant/merchantshops';
 import MerchantShopDetail from './components/merchant/shop/shopdetail';
 import ShopDashboard from './components/merchant/shop/shopdashboard';
+import ShopItems from './components/merchant/shop/shopitems';
+import AddRecord from './components/merchant/shop/khatabook/addrecord';
+import KhataDashboard from './components/merchant/shop/khatabook/khatadashboard';
 
 export type RootStackParamList = {
   Greeting: undefined;
@@ -39,6 +42,9 @@ export type RootStackParamList = {
   MerchantShops:undefined;
   MerchantShopDetail: undefined;
   ShopDashboard: undefined;
+  ShopItems: undefined;
+  AddRecord: undefined;
+  KhataDashboard: undefined;
 };
 
 
@@ -67,6 +73,9 @@ export default function DukaanUI() {
         <Stack.Screen name="MerchantShops" component={MerchantShops} />
         <Stack.Screen name="MerchantShopDetail" component={MerchantShopDetail} />
         <Stack.Screen name="ShopDashboard" component={ShopDashboard} />
+        <Stack.Screen name="ShopItems" component={ShopItems} />
+        <Stack.Screen name="AddRecord" component={AddRecord} />
+        <Stack.Screen name="KhataDashboard" component={KhataDashboard} />
       </Stack.Navigator>
     </NavigationContainer>
   );

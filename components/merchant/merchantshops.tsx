@@ -43,14 +43,15 @@ const MerchantShops = ({ route, navigation }: Props) => {
   return (
     <SafeAreaView>
       {shop.map((x) => 
-      <View>
-        <Text>{x?.['name']} {x?.['id']} {x?.['mobile']} {x?.['description']} {x?.["pincode"]}<br /> </Text>
-        <Button onPress={() => {
+      <View style={{height: "60", borderRadius: 10, padding: 10}}>
+        <Text>{x?.['name']} </Text>
+        <Text> {x?.['id']} {x?.['mobile']} {x?.['description']} {x?.["pincode"]}<br /> </Text>
+        <Pressable onPress={() => {
               openShop(x['id'])
             }}
-            color="#800080"
-            title="Open">
-        </Button>
+        >
+          Open
+        </Pressable>
       </View>
       )}
     </SafeAreaView>
