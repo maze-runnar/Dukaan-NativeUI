@@ -22,7 +22,7 @@ const AddRecord = () => {
 
     const newRecord = async () => {
         const shopId: any = await AsyncStorage.getItem("openedShopId");
-        const merchantId: any = await AsyncStorage.getItem("userid");
+        const merchantId: any = await AsyncStorage.getItem("merchantid");
         await fetch(API + ENDPOINTS.NEW_KHATA_RECORD, {
             method: "POST",
             cache: "no-cache",

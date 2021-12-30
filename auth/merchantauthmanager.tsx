@@ -7,7 +7,7 @@ import ENDPOINTS from '../utils/endpoints';
 let user = "";
 
 const currentMerchant = async () => {
-    const id = await AsyncStorage.getItem("userid");
+    const id = await AsyncStorage.getItem("merchantid");
     if (id && id != "") {
         await fetch(API + ENDPOINTS.MERCHANT_DETAIL + id).then(async (res) => {
             user = await res.json();

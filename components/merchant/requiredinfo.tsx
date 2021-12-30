@@ -23,7 +23,7 @@ const RequiredMerchantInfo = ({ route, navigation }: Props) => {
 
 	const update = async () => {
 		console.log(mobile, location);
-		const id: any = await AsyncStorage.getItem("userid");
+		const id: any = await AsyncStorage.getItem("merchantid");
 		await fetch(API + ENDPOINTS.MERCHANT_DETAIL + id, {
 			method: "PUT",
 			cache: "no-cache",

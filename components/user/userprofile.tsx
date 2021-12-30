@@ -43,7 +43,7 @@ const UserProfile = ({ route, navigation }: Props) => {
             setUserId(id);
         };
         userValues();
-    }, [username, mobile, location, pincode]);
+    }, [username, mobile, location, pincode, navigation]);
 
     return (
             <ScrollView>
