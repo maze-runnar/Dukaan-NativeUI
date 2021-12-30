@@ -9,6 +9,7 @@ import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import currentUser from "../../auth/authmanager";
+import { useNavigation } from "@react-navigation/native";
 
 
 const EditUserDetails = ({ route }: any) => {
@@ -23,6 +24,8 @@ const EditUserDetails = ({ route }: any) => {
 		return new Promise(resolve => setTimeout(resolve, ms));
 	}
 
+	const nav = useNavigation();
+
 	useEffect(() => {
 		const userValues = async () => {
 			let x: any = await currentUser();
@@ -34,13 +37,17 @@ const EditUserDetails = ({ route }: any) => {
 			setLocation(x?.['data']['location']);
 		};
 		userValues();
-	}, [username]);
+	}, [username, nav]);
 
 
 
 	const update = async () => {
 		console.log(mobile, location);
 		const id: any = await AsyncStorage.getItem("userid");
+		if(mobile.length != 10) {
+			setErrorMsg("Invalid Mobile number");
+			return;
+		}
 		await fetch(API + '/api/v1/user/' + id, {
 			method: "PUT",
 			cache: "no-cache",
@@ -66,6 +73,8 @@ const EditUserDetails = ({ route }: any) => {
 			.finally(() => {
 				console.log("getting into finally block");
 			});
+		setErrorMsg("");
+		nav.navigate("UserProfile");
 	};
 
 
@@ -92,7 +101,7 @@ const EditUserDetails = ({ route }: any) => {
 			<Pressable style={styles.ButtonStyle} onPress={() => update()}>
 				<Text style={{ color: "purple" }}> Update </Text>
 			</Pressable>
-
+			<Text style={{color: 'red'}}>{errorMsg}</Text>
 		</SafeAreaView>
 	);
 };

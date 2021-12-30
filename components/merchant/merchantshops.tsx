@@ -21,7 +21,7 @@ const MerchantShops = ({ route, navigation }: Props) => {
 
   useEffect(() => {
     const merchantShops = async () => {
-      const id: any = await AsyncStorage.getItem("userid");
+      const id: any = await AsyncStorage.getItem("merchantid");
       fetch(API + ENDPOINTS.SHOP_LIST + id).then(async (res) => {
         const itemData = await res.json();
         console.log("Shops for a merchant: ", itemData);

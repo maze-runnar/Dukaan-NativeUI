@@ -26,7 +26,7 @@ const MerchantHome = ({ navigation }: Props) => {
     useEffect(() => {
         const userValues = async () => {
             let x: any = await currentMerchant();
-            const id: any = await AsyncStorage.getItem("userid");
+            const id: any = await AsyncStorage.getItem("merchantid");
             setPincode(x?.['data']['pincode']);
             await sleep(1000);
             setMobile(x?.['data']['mobile']);

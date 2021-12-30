@@ -20,7 +20,7 @@ const AddShop = () => {
     const toggleSwitch = () => setHomeDeliveryAvailable(previousState => !previousState);
 
     const newShop = async () => {
-        const merchantId: any = await AsyncStorage.getItem("userid");
+        const merchantId: any = await AsyncStorage.getItem("merchantid");
         await fetch(API + ENDPOINTS.NEW_SHOP, {
             method: "POST",
             cache: "no-cache",

@@ -17,7 +17,7 @@ const MerchantNotify = () => {
 
   useEffect(() => {
     const userValues = async () => {
-      const id: any = await AsyncStorage.getItem("userid");
+      const id: any = await AsyncStorage.getItem("merchantid");
       fetch(API + "/api/v1/notification/" + id).then(async (res) => {
         const notificationData = await res.json();
         console.log("Notifications: ", notificationData);

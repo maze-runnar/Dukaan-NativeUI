@@ -51,9 +51,9 @@ const MerchantLogin = ({ route, navigation }: Props) => {
         if (data.status === 200) {
           navigation.navigate("MerchantDashboard");
           await AsyncStorage.setItem("username", username);
-          await AsyncStorage.setItem("userid", x?.["id"]);
+          await AsyncStorage.setItem("merchantid", x?.["id"]);
           await AsyncStorage.setItem("isLoggedIn", "true");
-          console.log(await AsyncStorage.getItem("userid"), await AsyncStorage.getItem("username"), await AsyncStorage.getItem("password"));
+          console.log(await AsyncStorage.getItem("merchantid"), await AsyncStorage.getItem("username"), await AsyncStorage.getItem("password"));
         }
         console.log("getting into then block", x);
       })
