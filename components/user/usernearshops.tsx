@@ -163,7 +163,7 @@ const NearShops = ({ navigation }: Props) => {
                                     </View>
                                     <View style={styles.cardcenters}>
                                         <Image
-                                            source={{uri:'https://upcycleluxe.com/wp-content/uploads/2021/09/fashion-1-1-min.jpg'}}
+                                            source={{uri:'https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8c2FsZXxlbnwwfHwwfHw%3D&w=1000&q=80'}}
                                             style={{width:200,height:200, resizeMode: 'cover'}}/>
                                     </View>
                     </ScrollView>
@@ -173,7 +173,7 @@ const NearShops = ({ navigation }: Props) => {
                 <ScrollView pagingEnabled horizontal={true} showsHorizontalScrollIndicator ={false}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Grocery' && y['is_available']==true)                           
+                            if(y['category']=='Grocery' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
@@ -194,7 +194,7 @@ const NearShops = ({ navigation }: Props) => {
                     style={{margin:5}}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Stationery' && y['is_available']==true)                           
+                            if(y['category']=='Stationery' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
@@ -215,7 +215,7 @@ const NearShops = ({ navigation }: Props) => {
                     style={{margin:5}}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Fashion' && y['is_available']==true)                           
+                            if(y['category']=='Fashion' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
@@ -236,7 +236,7 @@ const NearShops = ({ navigation }: Props) => {
                     style={{margin:5}}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Electronics' && y['is_available']==true)                           
+                            if(y['category']=='Electronics' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
@@ -257,7 +257,7 @@ const NearShops = ({ navigation }: Props) => {
                     style={{margin:5}}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Medical' && y['is_available']==true)                           
+                            if(y['category']=='Medical' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
@@ -278,7 +278,7 @@ const NearShops = ({ navigation }: Props) => {
                     style={{margin:5}}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Toy' && y['is_available']==true)                           
+                            if(y['category']=='Toy' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
@@ -299,7 +299,7 @@ const NearShops = ({ navigation }: Props) => {
                     style={{margin:5}}>
                 {items.map((x) => {
                         return (x?.map((y) =>{ 
-                            if(y['description']=='Beauty' && y['is_available']==true)                           
+                            if(y['category']=='Beauty' && y['is_available']==true)                           
                                 return (
                                     
                                     <View style={styles.cardcenters}>
