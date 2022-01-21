@@ -18,6 +18,7 @@ const MerchantHome = ({ navigation }: Props) => {
     const [pincode, setPincode] = useState("");
     const [mobile, setMobile] = useState("");
     const [location, setLocation] = useState("");
+    const [isLoading, setIsLoading] = useState(true);
 
     function sleep(ms: any) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -34,12 +35,15 @@ const MerchantHome = ({ navigation }: Props) => {
             console.log(x, "current user data for sesion");
         };
         userValues();
-
+        if((location !== '' && location !== null && location !== undefined) && (!!mobile && mobile !== "") && pincode !== "") {
+            setIsLoading(false);
+        }
     }, [mobile, location, navigation]);
 
     //will use useeffect here to check if number, pincode and location is entered
     return (
         <SafeAreaView>
+            {isLoading ? "loading.." : "loaded.."}
             {((location !== '' && location !== null && location !== undefined) && (!!mobile && mobile !== "") && pincode !== "") ?
                 <View style={{ height: '50%' }}>
                     <MerchantNotify />

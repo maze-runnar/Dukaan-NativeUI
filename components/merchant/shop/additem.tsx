@@ -1,9 +1,12 @@
 import React, { useState } from "react";
-import { View, Switch, TextInput, Text, Pressable } from 'react-native';
+import { View, Switch, TextInput, Text, Pressable, Button,Image } from 'react-native';
 import styles from "../../../styles/signup";
 import API from "../../../utils/api";
 import ENDPOINTS from "../../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { launchImageLibrary } from 'react-native-image-picker';
+import * as ImagePicker from 'expo-image-picker';
+
 
 const AddItem = () => {
     const [isAvailable, setisAvailable] = useState(true);
@@ -12,6 +15,7 @@ const AddItem = () => {
     const [errorMsg, setErrorMsg] = useState("");
     const [maxOrderAmount, setMaxOrderAmount] = useState("");
     const [minOrderAmount, setMinOrderAmount] = useState("");
+    const [image, setImage] = useState(null);
 
     const toggleSwitch = () => setisAvailable(previousState => !previousState);
 
@@ -41,6 +45,34 @@ const AddItem = () => {
             });
     };
 
+
+    const handleChoosePhoto = async () => {
+        let result = await ImagePicker.launchImageLibraryAsync({
+            mediaTypes: ImagePicker.MediaTypeOptions.All,
+            allowsEditing: true,
+            aspect: [4, 3],
+            quality: 1,
+          });
+      
+          console.log(result);
+      
+          if (!result.cancelled) {
+            setImage(result.uri);
+          }
+      };
+    
+      const handleUploadPhoto = () => {
+        fetch(`${API}/api/upload`, {
+          method: 'POST',
+        })
+          .then((response) => response.json())
+          .then((response) => {
+            console.log('response', response);
+          })
+          .catch((error) => {
+            console.log('error', error);
+          });
+        }
 
 
     return (
@@ -80,6 +112,9 @@ const AddItem = () => {
                 onValueChange={toggleSwitch}
                 value={isAvailable}
             />
+            <Image source={{  uri: image }} />
+            <Button title="Upload Photo" onPress={handleUploadPhoto} />
+            <Button title="Choose Photo" onPress={handleChoosePhoto} />
             <Pressable style={styles.ButtonStyle} onPress={() => newItem()}>
                 <Text style={{ color: "purple" }}> Add Item </Text>
             </Pressable>
