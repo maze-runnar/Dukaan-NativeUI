@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Button, Text,Dimensions ,TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent, Image } from "react-native";
+import { View, Button, Text, Dimensions, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent, Image } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -13,8 +13,8 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 
 const LeftContent = (props: any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{ backgroundColor: 'purple' }} />
-const RightContentOpen = (props: any) => <div style={{ backgroundColor: "#9be864", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px' }}><Text>Open</Text></div>
-const RightContentClosed = (props: any) => <div style={{ backgroundColor: "#ff0000", paddingLeft: '4px', paddingRight: '4px', borderRadius: '5px', marginRight: '3px' }}><Text style={{ color: "white" }}>Closed</Text></div>
+const RightContentOpen = (props: any) => <View style={{ backgroundColor: "#9be864", paddingLeft: 4, paddingRight: 4, borderRadius: 5, marginRight: 3 }}><Text>Open</Text></View>
+const RightContentClosed = (props: any) => <View style={{ backgroundColor: "#ff0000", paddingLeft: 4, paddingRight: 4, borderRadius: 5, marginRight: 3 }}><Text style={{ color: "white" }}>Closed</Text></View>
 
 type Props = NativeStackScreenProps<RootStackParamList, "NearShops">;
 
@@ -26,9 +26,8 @@ const NearShops = ({ navigation }: Props) => {
     const [currentPincode, setCurrentPincode] = useState(""); //let's say we need opening_time info here
     const [openingTime, setOpeningTime] = useState("");
     const [errorMsg, setErrorMsg] = useState("");
-
     const [nearbyShops, setnearbyShops] = useState([]);
-    const [items,setitems] = useState([]);
+    const [items, setitems] = useState([]);
 
     function sleep(ms: any) {
         return new Promise(resolve => setTimeout(resolve, ms)); // sleep function to later use loading screen
@@ -51,21 +50,23 @@ const NearShops = ({ navigation }: Props) => {
             console.log(username, "current user data for sesion");
         };
         userValues();
-        {nearbyShops.map((x) => {
-            const shop = async () => {
-                await fetch(API + ENDPOINTS.ITEM_LIST + x['id']).then(async (res) => {
-                    const getitems:any = await res.json();
-                    // setitems(...items['data']);
-                    let updateditemarray = items;
-                    updateditemarray.push(getitems['data']);
-                    setitems(updateditemarray);
-                    console.log("Shop Id : ", items);
-                });
-            };
-            shop();
-            sleep(1000);
+        {
+            nearbyShops.map((x) => {
+                const shop = async () => {
+                    await fetch(API + ENDPOINTS.ITEM_LIST + x['id']).then(async (res) => {
+                        const getitems: any = await res.json();
+                        // setitems(...items['data']);
+                        let updateditemarray = items;
+                        updateditemarray.push(getitems['data']);
+                        setitems(updateditemarray);
+                        console.log("Shop Id : ", items);
+                    });
+                };
+                shop();
+                sleep(1000);
 
-        })}
+            })
+        }
         // const fetchNearShops = async () => { 
         //     const id: any = await AsyncStorage.getItem("userid");
 
@@ -89,13 +90,13 @@ const NearShops = ({ navigation }: Props) => {
         })
     }
     return (
-        <ScrollView style={{backgroundColor:"white"}} >
-                <ScrollView pagingEnabled horizontal={true} showsHorizontalScrollIndicator ={false}
-                style={{marginBottom:3}}>
+        <ScrollView style={{ backgroundColor: "white" }} >
+            <ScrollView pagingEnabled horizontal={true} showsHorizontalScrollIndicator={false}
+                style={{ marginBottom: 3 }}>
 
                 <View style={styles.cardcenters}>
                     <MaterialCommunityIcons name="dresser" size={26} />
-                        <Text> All </Text>
+                    <Text> All </Text>
                 </View>
                 <View style={styles.cardcenters} >
                     <MaterialCommunityIcons name="food" size={26} />
@@ -126,23 +127,25 @@ const NearShops = ({ navigation }: Props) => {
                     <Text> Toy </Text>
                 </View>
 
-                </ScrollView>
-                <ScrollView >
-                    {nearbyShops.map((x) => {
-                        return (
-                            <Pressable onPress={() => {
-                                navigation.navigate('ShopDetails', { itemId: x['id'] });
+            </ScrollView>
+            <ScrollView >
+                {nearbyShops.map((x) => {
+                    return (
+                        <Pressable onPress={() => {
+                            navigation.navigate('ShopDetails', { itemId: x['id'] });
+                        }}>
+                            <Card style={{
+                                margin: 5, borderRadius: 10, shadowColor: '#ffff00',
+                                shadowOffset: { width: 0, height: 5 },
+                                shadowOpacity: 0.4,
+                                elevation: 1
                             }}>
-                            <Card style={{margin: "5px", borderRadius:"10px", shadowColor: '#ffff00',
-                            shadowOffset: {width: 0, height: 5},
-                            shadowOpacity: 0.4,
-                            elevation: 1}}>
-                                <Card.Title title={x['name']} subtitle={"📍: "+x['location']+ "\n" 
-                                +"☎️: " + x['mobile']+"\n"+
-                                "Time: " + x['opening_time'] + " - " + x['close_time'] 
-                            } 
-                                
-                                left={LeftContent} right={RightContentClosed}/>
+                                <Card.Title title={x['name']} subtitle={"📍: " + x['location'] + "\n"
+                                    + "☎️: " + x['mobile'] + "\n" +
+                                    "Time: " + x['opening_time'] + " - " + x['close_time']
+                                }
+
+                                    left={LeftContent} right={RightContentClosed} />
                             </Card>
                             </Pressable>
                         )

@@ -53,21 +53,21 @@ const UserProfile = ({ route, navigation }: Props) => {
                     height: 100
                 }}>
                 </View>
-                <view style={{width:"100%", height:5, backgroundColor:"#db7d02" }}></view>
+                <View style={{width:"100%", height:5, backgroundColor:"#db7d02" }}></View>
                     <InitialIcon name={username}/>             
                 <View style={{margin: "auto",alignItems: 'center',
           justifyContent: 'center'}}>
-                    <Text style={{textTransform:"uppercase" ,fontFamily:"HelveticaNeue",fontWeight:"200", fontSize:25 }}>{username}</Text>
+                    <Text style={{textTransform:"uppercase" ,fontWeight:"200", fontSize:25 }}>{username}</Text>
                 </View>
                 <View style={{margin: 5}}>
-                    <Text style={{fontFamily:"HelveticaNeue",color: 'gray', fontSize:17 }}>
+                    <Text style={{color: 'gray', fontSize:17 }}>
                         <MaterialCommunityIcons name="map-marker-multiple" size={18} />
                     {location} ,Pincode: {pincode} </Text>
-                <Text style={{ fontFamily: "HelveticaNeue", color: 'gray', fontSize: 17 }}>
+                <Text style={{ color: 'gray', fontSize: 17 }}>
                     <MaterialCommunityIcons name="phone" size={18} />
                     {mobile}</Text>
                 {/* add personal note from database here */}
-                <Text style={{ fontFamily: "HelveticaNeue", color: 'gray', fontSize: 17 }}>
+                <Text style={{ color: 'gray', fontSize: 17 }}>
                     {personalNote}</Text>
             </View>
             <View style={styles.statscontainer} >
