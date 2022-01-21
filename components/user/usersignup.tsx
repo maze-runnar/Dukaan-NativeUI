@@ -1,5 +1,6 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { SafeAreaView, Text, Pressable } from "react-native";
+import { TextInput } from 'react-native-paper';
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
@@ -76,9 +77,11 @@ const UserSignUp = ({ route, navigation }: Props) => {
             ? setErrorMsg("not a valid username")
             : setErrorMsg("");
         }}
-        style={styles.input}
-        onChangeText={setUsername}
-        placeholder="username"
+        onChangeText={(username) => setUsername(username)}
+        label="username"
+        style={{width: '90%'}}
+        activeOutlineColor="orange"
+        mode="outlined"
         value={username}
       />
       <TextInput
@@ -88,9 +91,11 @@ const UserSignUp = ({ route, navigation }: Props) => {
             : setErrorMsg("");
         }}
         onChangeText={setPassword}
+        style={{width: '90%'}}
         value={password}
-        style={styles.input}
-        placeholder="password"
+        label="password"
+        mode="outlined"
+        activeOutlineColor="orange"
         secureTextEntry
       />
       <Text style={{ color: "red" }}>{errorMsg}</Text>

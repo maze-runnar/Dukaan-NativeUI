@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View,SafeAreaView, Text, Pressable, TextInput ,ScrollView} from "react-native";
+import { View, SafeAreaView, Text, Pressable, TextInput, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -24,7 +24,7 @@ const UserProfile = ({ route, navigation }: Props) => {
     const [location, setLocation] = useState("Add location");
     const [mobile, setMobile] = useState("Add mobile no.");
     const [personalNote, setpersonalNote] = useState("");
-
+    const [name, setName] = useState("");
 
     function sleep(ms: any) {
         return new Promise(resolve => setTimeout(resolve, ms));
@@ -40,28 +40,31 @@ const UserProfile = ({ route, navigation }: Props) => {
             setMobile(x?.['data']['mobile']);
             setLocation(x?.['data']['location']);
             setpersonalNote(x?.['data']['personal_note']);
+            setName(x?.['data']['name']);
             setUserId(id);
         };
         userValues();
-    }, [username, mobile, location, pincode, navigation]);
+    }, [username, mobile, location, pincode, navigation, name]);
 
     return (
-            <ScrollView>
-                <View style={{
-                    backgroundColor: '#000000',
-                    width: '100%',
-                    height: 100
-                }}>
-                </View>
-                <View style={{width:"100%", height:5, backgroundColor:"#db7d02" }}></View>
-                    <InitialIcon name={username}/>             
-                <View style={{margin: "auto",alignItems: 'center',
-          justifyContent: 'center'}}>
-                    <Text style={{textTransform:"uppercase" ,fontWeight:"200", fontSize:25 }}>{username}</Text>
-                </View>
-                <View style={{margin: 5}}>
-                    <Text style={{color: 'gray', fontSize:17 }}>
-                        <MaterialCommunityIcons name="map-marker-multiple" size={18} />
+        <ScrollView>
+            <View style={{
+                backgroundColor: '#000000',
+                width: '100%',
+                height: 100
+            }}>
+            </View>
+            <View style={{ width: "100%", height: 5, backgroundColor: "#db7d02" }}></View>
+            <InitialIcon name={username} />
+            <View style={{
+                margin: "auto", alignItems: 'center',
+                justifyContent: 'center'
+            }}>
+                <Text style={{ textTransform: "uppercase", fontWeight: "200", fontSize: 25 }}>{name}</Text>
+            </View>
+            <View style={{ margin: 5 }}>
+                <Text style={{ color: 'gray', fontSize: 17 }}>
+                    <MaterialCommunityIcons name="map-marker-multiple" size={18} />
                     {location} ,Pincode: {pincode} </Text>
                 <Text style={{ color: 'gray', fontSize: 17 }}>
                     <MaterialCommunityIcons name="phone" size={18} />
@@ -72,24 +75,18 @@ const UserProfile = ({ route, navigation }: Props) => {
             </View>
             <View style={styles.statscontainer} >
                 <View style={styles.statsbox}>
-                    <Button onPress={() => {
-                        navigation.navigate('EditUserDetails', { itemId: userid });
-                    }}
-                        color="#800080">
-                        <Text style={{ color: "white" }}>My Khata</Text>
-                    </Button>
-                </View>
-                <View style={styles.statsbox}>
-                    <Button onPress={() => {
-                        navigation.navigate('EditUserDetails', { itemId: userid });
-                    }}
+                    <Button
+                        onPress={() => {
+                            navigation.navigate('EditUserDetails', { itemId: userid });
+                        }} icon="pencil"
+                        mode="contained"
                         color="#800080">
                         <Text style={{ color: "white" }} >Edit Profile</Text>
                     </Button>
                 </View>
             </View>
-            </ScrollView>
-		);
+        </ScrollView>
+    );
 };
 
 export default UserProfile;

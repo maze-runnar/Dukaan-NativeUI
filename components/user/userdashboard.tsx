@@ -22,12 +22,12 @@ function MyTabs() {
             />
 
             <Tab.Screen
-                name="Khaata"
+                name="History"
                 component={UserSignUp}
                 options={{
-                    tabBarLabel: "Khaata",
+                    tabBarLabel: "History",
                     tabBarIcon: ({ color }) => (
-                        <MaterialCommunityIcons name="notebook" color={color} size={26} />
+                        <MaterialCommunityIcons name="bookmark" color={color} size={26} />
                     ),
                 }}
             />

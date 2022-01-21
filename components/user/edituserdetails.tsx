@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
-import { SafeAreaView, Text, Pressable, TextInput } from "react-native";
+import { SafeAreaView, Text, Pressable } from "react-native";
+import { TextInput } from "react-native-paper";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
@@ -15,6 +16,7 @@ import { useNavigation } from "@react-navigation/native";
 const EditUserDetails = ({ route }: any) => {
 	const { userId } = route.params;
 	let [username, setUsername] = React.useState("");
+	let [fullname, setName] = React.useState("");
 	let [location, setLocation] = React.useState("");
 	let [mobile, setMobile] = React.useState("");
 	let [pincode, setPincode] = React.useState("");
@@ -35,6 +37,7 @@ const EditUserDetails = ({ route }: any) => {
 			setPincode(x?.['data']['pincode']);
 			setMobile(x?.['data']['mobile']);
 			setLocation(x?.['data']['location']);
+			setName(x?.['data']['name']);
 		};
 		userValues();
 	}, [username, nav]);
@@ -44,7 +47,7 @@ const EditUserDetails = ({ route }: any) => {
 	const update = async () => {
 		console.log(mobile, location);
 		const id: any = await AsyncStorage.getItem("userid");
-		if(mobile.length != 10) {
+		if (mobile.length != 10) {
 			setErrorMsg("Invalid Mobile number");
 			return;
 		}
@@ -55,7 +58,7 @@ const EditUserDetails = ({ route }: any) => {
 				"Content-Type": "application/json",
 				"allow-control-allow-origin": "*",
 			},
-			body: JSON.stringify({ mobile: mobile, location: location, pincode: pincode }),
+			body: JSON.stringify({ mobile: mobile, location: location, pincode: pincode, name:fullname }),
 		})
 			.then(async (data: any) => {
 				console.log(data.status); // return 200, 403
@@ -81,27 +84,33 @@ const EditUserDetails = ({ route }: any) => {
 	return (
 		<SafeAreaView style={styles.container}>
 			<TextInput
-				style={styles.input}
+				style={{ width: '90%', marginBottom: 5 }}
+				onChangeText={setName}
+				label="name"
+				value={fullname}
+			/>
+			<TextInput
+				style={{ width: '90%', marginBottom: 5 }}
 				onChangeText={setLocation}
-				placeholder="location"
+				label="location"
 				value={location}
 			/>
 			<TextInput
-				style={styles.input}
+				style={{ width: '90%', marginBottom: 5 }}
 				onChangeText={setPincode}
-				placeholder="pincode"
+				label="pincode"
 				value={pincode}
 			/>
 			<TextInput
 				onChangeText={setMobile}
 				value={mobile}
-				style={styles.input}
-				placeholder="Mobile no."
+				style={{ width: '90%', marginBottom: 5 }}
+				label="Mobile no."
 			/>
 			<Pressable style={styles.ButtonStyle} onPress={() => update()}>
 				<Text style={{ color: "purple" }}> Update </Text>
 			</Pressable>
-			<Text style={{color: 'red'}}>{errorMsg}</Text>
+			<Text style={{ color: 'red' }}>{errorMsg}</Text>
 		</SafeAreaView>
 	);
 };

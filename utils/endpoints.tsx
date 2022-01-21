@@ -17,7 +17,8 @@ const ENDPOINTS = {
     UPLOAD_IMAGE: "/api/v1/upload/image",
     NEW_KHATA_RECORD: "/api/v1/khata/new",
     KHATA_LIST: "/api/v1/shop/khata/", // <shopid> /api/v1/shop/khata/<shopid>
-    KHATA_DETAIL: "/api/v1/khata/" //<khataid>  /api/v1/khata/<khataid>
+    KHATA_DETAIL: "/api/v1/khata/", //<khataid>  /api/v1/khata/<khataid>
+    ITEM_FILTER_BY_NAME: "/api/v1/item/name/filter?itemname="
 };
 
 export default ENDPOINTS;
