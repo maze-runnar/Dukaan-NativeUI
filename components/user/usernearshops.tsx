@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { View, Button, Text, Dimensions, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent, Image } from "react-native";
+import { View, Button, Text, Dimensions, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent, Image, TouchableHighlight } from "react-native";
 import currentUser from "../../auth/authmanager";
 import styles from "../../styles/signup";
 import API from "../../utils/api";
@@ -9,7 +9,8 @@ import { Avatar, Card, Title, Paragraph, Searchbar, DarkTheme } from 'react-nati
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../App";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-
+import { IconButton, Colors } from 'react-native-paper';
+import categories from "../../utils/categories";
 
 const LeftContent = (props: any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{ backgroundColor: 'purple' }} />
 const RightContentOpen = (props: any) => <View style={{ backgroundColor: "#9be864", paddingLeft: 4, paddingRight: 4, borderRadius: 5, marginRight: 3 }}><Text>Open</Text></View>
@@ -28,6 +29,9 @@ const NearShops = ({ navigation }: Props) => {
     const [nearbyShops, setnearbyShops] = useState([]);
     const [items, setitems] = useState([]);
     const [searchQuery, setSearchQuery] = React.useState('');
+
+    const [selectedCategory, setSelectedCategory] = React.useState(null);
+    const [selectedCategoryItems, setSelectedCategoryItems] = React.useState([]);
 
     const onChangeSearch = (query: React.SetStateAction<string>) => setSearchQuery(query);
 
@@ -94,7 +98,7 @@ const NearShops = ({ navigation }: Props) => {
 
     const searchItem = async () => {
         const id: any = await AsyncStorage.getItem("userid");
-        
+
         // if(searchQuery.trim() === "") {
         //     await fetch(API + ENDPOINTS.ITEM_LIST + id).then(async (res) => {
         //         const getitems: any = await res.json();
@@ -105,16 +109,16 @@ const NearShops = ({ navigation }: Props) => {
         //         console.log("Shop Id : ", items);
         //     });
         // } else {
-            fetch(API + ENDPOINTS.ITEM_FILTER_BY_NAME + searchQuery).then(async (res) => {
-                const getitems: any = await res.json();
-                let updateditemarray = [];
-                updateditemarray.push(getitems['data']);
-                setitems(updateditemarray);
-                            
-                // setitems(getitems['data']);
-                console.log(getitems['data']);
-                sleep(1000);
-            });
+        fetch(API + ENDPOINTS.ITEM_FILTER_BY_NAME + searchQuery).then(async (res) => {
+            const getitems: any = await res.json();
+            let updateditemarray = [];
+            updateditemarray.push(getitems['data']);
+            setitems(updateditemarray);
+
+            // setitems(getitems['data']);
+            console.log(getitems['data']);
+            sleep(1000);
+        });
         // }
         fetch(API + ENDPOINTS.NEAR_BY_SHOPS + id + "?itemname=" + searchQuery).then(async (res) => {
             const nearshops = await res.json();
@@ -123,6 +127,15 @@ const NearShops = ({ navigation }: Props) => {
         });
 
         // console.log(searchQuery);
+    }
+
+    function filterByCategory(category: string | any) {
+        setSelectedCategory(category);
+        fetch(API + ENDPOINTS.ITEM_FILTER_BY_CATEGORY + category).then(async (res) => {
+            const nearshops = await res.json();
+            console.log(nearshops);
+            setSelectedCategoryItems(nearbyShops['data']);
+        });
     }
 
     return (
@@ -136,40 +149,19 @@ const NearShops = ({ navigation }: Props) => {
             />
             <ScrollView pagingEnabled horizontal={true} showsHorizontalScrollIndicator={false}
                 style={{ marginBottom: 3 }}>
-
-                <View style={styles.cardcenters}>
-                    <MaterialCommunityIcons name="dresser" size={26} />
-                    <Text> All </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="food" size={26} />
-                    <Text> Grocery </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="bag-checked" size={26} />
-                    <Text> Fashion </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="electric-switch" size={26} />
-                    <Text> Electronics </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="medical-bag" size={26} />
-                    <Text> Medical </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="book" size={26} />
-                    <Text> Stationery </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="star-face" size={26} />
-                    <Text> Beauty </Text>
-                </View>
-                <View style={styles.cardcenters} >
-                    <MaterialCommunityIcons name="pinwheel" size={26} />
-                    <Text> Toy </Text>
-                </View>
-
+                
+                   {categories.map((category) => { return(
+                       <View style={styles.cardcenters}>
+                       <IconButton
+                       icon={category.icon}
+                       size={20}
+                       onPress={() => filterByCategory(category.name)}
+                   />
+                   <Text> {category.name} </Text>
+                   </View>
+                   )
+                   })}
+        
             </ScrollView>
             <ScrollView >
                 {nearbyShops.map((x) => {
