@@ -58,8 +58,8 @@ export default function DukaanUI() {
         <Stack.Screen name="Greeting" component={Greeting} />
         <Stack.Screen name="UserSignUp" component={UserSignUp} />
         <Stack.Screen name="UserLogin" component={UserLogin} />
-        <Stack.Screen name="Dashboard" component={MyTabs} />
-        <Stack.Screen name="NearShops" component={NearShops} />
+        <Stack.Screen name="Dashboard" options={{headerShown: false}} component={MyTabs} />
+        <Stack.Screen name="NearShops" options={{headerShown: false}} component={NearShops} />
         <Stack.Screen name="ShopDetails" component={ShopDetails} initialParams={{itemId: 1}}/>
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="EditUserDetails" component={EditUserDetails} initialParams={{userId: 1}}/>
