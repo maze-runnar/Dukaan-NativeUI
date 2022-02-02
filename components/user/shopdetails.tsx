@@ -74,6 +74,13 @@ const ShopDetails = ({ route }: any) => {
 					<Text key={k} style={style.pagingdot} >⬤</Text>
 				))}
 			</View>
+			<View>
+			{
+					shopItem.map((item, index) => (
+						<Text>{item?.name}</Text>
+					))
+				}
+			</View>
 		</ScrollView>
 	);
 };
