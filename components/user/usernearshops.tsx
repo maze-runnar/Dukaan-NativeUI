@@ -167,6 +167,7 @@ const NearShops = ({ navigation }: Props) => {
                 {nearbyShops.map((x) => {
                     return (
                         <Pressable onPress={() => {
+                            AsyncStorage.setItem("currentShopId", String(x['id']));
                             navigation.navigate('ShopDetails', { itemId: x['id'] });
                         }}>
                             <Card style={{
