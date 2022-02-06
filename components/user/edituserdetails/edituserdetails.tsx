@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { SafeAreaView, Text, Pressable } from "react-native";
 import { TextInput } from "react-native-paper";
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
+import styles from "../../../styles/common";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
 // import { useNavigation } from "@react-navigation/native";
-import response from "../../utils/data";
+import response from "../../../utils/data";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../../App";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import currentUser from "../../auth/authmanager";
+import currentUser from "../../../auth/authmanager";
 import { useNavigation } from "@react-navigation/native";
 
 

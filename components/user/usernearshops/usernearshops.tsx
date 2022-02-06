@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { View, Button, Text, Dimensions, TextInput, Pressable, SafeAreaView, ScrollView, ImageBackground, SliderComponent, Image, TouchableHighlight } from "react-native";
-import currentUser from "../../auth/authmanager";
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
+import currentUser from "../../../auth/authmanager";
+import styles from "../../../styles/common";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Avatar, Card, Title, Paragraph, Searchbar, DarkTheme } from 'react-native-paper';
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../../App";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { IconButton, Colors } from 'react-native-paper';
-import categories from "../../utils/categories";
+import categories from "../../../utils/categories";
 
 const LeftContent = (props: any) => <Avatar.Icon {...props} icon="shopping-outline" color="orange" style={{ backgroundColor: 'purple' }} />
 const RightContentOpen = (props: any) => <View style={{ backgroundColor: "#9be864", paddingLeft: 4, paddingRight: 4, borderRadius: 5, marginRight: 3 }}><Text>Open</Text></View>

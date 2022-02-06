@@ -1,9 +1,9 @@
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import React from "react";
-import UserSignUp from "./usersignup";
+import UserSignUp from "../usersignup/index";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import NearShops from "./usernearshops";
-import UserProfile from "./userprofile";
+import NearShops from "../usernearshops/usernearshops";
+import UserProfile from "../userprofile/userprofile";
 
 const Tab = createMaterialBottomTabNavigator();
 

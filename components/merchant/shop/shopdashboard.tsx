@@ -12,7 +12,7 @@ import {
   TouchableHighlight,
   TouchableOpacity
 } from 'react-native';
-import styles from '../../../styles/signup';
+import styles from '../../../styles/common';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { NavigationContainer } from '@react-navigation/native';
 import { useNavigation } from '@react-navigation/native';

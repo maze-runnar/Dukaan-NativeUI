@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from "react";
 import { SafeAreaView, Text, Pressable, TextInput, AppRegistry } from "react-native";
-import styles from "../../styles/signup";
+import styles from "../../styles/common";
 import API from "../../utils/api";
 import ENDPOINTS from "../../utils/endpoints";
 // import { useNavigation } from "@react-navigation/native";

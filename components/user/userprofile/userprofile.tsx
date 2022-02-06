@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { View, SafeAreaView, Text, Pressable, TextInput, ScrollView } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
-import response from "../../utils/data";
+import styles from "../../../styles/common";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
+import response from "../../../utils/data";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
-import currentUser from "../../auth/authmanager";
-import InitialIcon from "../public/initialicon";
+import { RootStackParamList } from "../../../App";
+import currentUser from "../../../auth/authmanager";
+import InitialIcon from "../../public/initialicon";
 import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 

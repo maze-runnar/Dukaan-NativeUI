@@ -1,13 +1,14 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable } from "react-native";
-import { TextInput } from 'react-native-paper';
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
-// import { useNavigation } from "@react-navigation/native";
-import response from "../../utils/data";
+import { SafeAreaView, Text, Pressable, Image, Dimensions } from "react-native";
+import { TextInput, Button } from 'react-native-paper';
+import styles from "../../../styles/common";
+import signupstyle from "./styles";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
+import response from "../../../utils/data";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../../App";
+import checkPassword, { passwordValidationErrorMessage, inputMode, activeOutlineColor, buttonTextColor, errorMsgColor, invalidUserNamePasswordErrorMessage, invalidUserNameErrorMessage, buttonWidth } from './utils';
 
 type Props = NativeStackScreenProps<RootStackParamList, "UserSignUp">;
 
@@ -27,7 +28,7 @@ const UserSignUp = ({ route, navigation }: Props) => {
         "Don't send post request for signup, invalid username or password!",
         !validateInput
       );
-      setErrorMsg("invalid username or password");
+      setErrorMsg(invalidUserNamePasswordErrorMessage);
       return;
     }
     await fetch(API + ENDPOINTS.REGISTER, {
@@ -58,11 +59,6 @@ const UserSignUp = ({ route, navigation }: Props) => {
       });
   };
 
-  function checkPassword(str: any) {
-    let re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    console.log(re.test(str));
-    return re.test(str);
-  }
 
   function validateUserName(str: any) {
     var usernameRegex = /^[a-zA-Z0-9]+$/;
@@ -71,43 +67,47 @@ const UserSignUp = ({ route, navigation }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <Image
+        source={require("../../../assets/newuser-icon.png")}
+        style={styles.ImageStyle}
+      />
       <TextInput
         onBlur={() => {
           validateUserName(username) === false
-            ? setErrorMsg("not a valid username")
+            ? setErrorMsg(invalidUserNameErrorMessage)
             : setErrorMsg("");
         }}
         onChangeText={(username) => setUsername(username)}
         label="username"
-        style={{width: '90%'}}
-        activeOutlineColor="orange"
-        mode="outlined"
+        style={signupstyle.textInput}
+        activeOutlineColor={activeOutlineColor}
+        mode={inputMode}
         value={username}
       />
       <TextInput
         onBlur={() => {
           checkPassword(password) === false
-            ? setErrorMsg("not a valid password")
+            ? setErrorMsg(passwordValidationErrorMessage)
             : setErrorMsg("");
         }}
         onChangeText={setPassword}
-        style={{width: '90%'}}
+        style={signupstyle.textInput}
         value={password}
         label="password"
-        mode="outlined"
-        activeOutlineColor="orange"
+        mode={inputMode}
+        activeOutlineColor={activeOutlineColor}
         secureTextEntry
       />
-      <Text style={{ color: "red" }}>{errorMsg}</Text>
-      <Pressable style={styles.ButtonStyle} onPress={() => userSignUP()}>
-        <Text style={{ color: "purple" }}> Signup </Text>
-      </Pressable>
+      <Text style={{ color: errorMsgColor }}>{errorMsg}</Text>
+      <Button mode="contained" style={signupstyle.registerButton} onPress={() => userSignUP()}>
+        <Text>Register</Text>
+      </Button>
       <Text>Already a User?</Text>
       <Pressable
         style={{ bottom: 0 }}
         onPress={() => navigation.navigate("UserLogin")}
       >
-        <Text style={{ color: "purple" }}>Login</Text>
+        <Text style={{ color: buttonTextColor }}>Login</Text>
       </Pressable>
     </SafeAreaView>
   );

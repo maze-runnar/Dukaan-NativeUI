@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		width: 100,
 		height: 100,
-		bottom: 20,
 		resizeMode: 'contain',
+		marginBottom: 50
 	},
 	container: {
 		flex: 1,

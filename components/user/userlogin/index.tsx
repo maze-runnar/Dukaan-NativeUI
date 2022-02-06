@@ -1,14 +1,15 @@
 import React from "react";
-import { SafeAreaView, Text, Pressable,  AppRegistry } from "react-native";
-import { TextInput } from "react-native-paper";
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
-// import { useNavigation } from "@react-navigation/native";
+import { SafeAreaView, Text, Pressable } from "react-native";
+import { TextInput, Button, Chip } from "react-native-paper";
+import styles from "../../../styles/common";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-// import MyTabs from "./userdashboard";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
-import { RootStackParamList } from "../../App";
+import { RootStackParamList } from "../../../App";
+import checkPassword from "./utils";
+import signupstyle from "../usersignup/styles";
+import { activeOutlineColor, errorMsgColor, inputMode } from "../usersignup/utils";
 
 type Props = NativeStackScreenProps<RootStackParamList, 'UserLogin'>;
 
@@ -17,6 +18,11 @@ const UserLogin = ({ route, navigation }: Props) => {
   let [username, setUsername] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errorMsg, setErrorMsg] = React.useState("");
+
+  function validateUserName(str: any) {
+    var usernameRegex = /^[a-zA-Z0-9]+$/;
+    return usernameRegex.test(str);
+  }
 
   const validateInput = () => {
     if (checkPassword(password) && validateUserName(username)) {
@@ -64,19 +70,10 @@ const UserLogin = ({ route, navigation }: Props) => {
       });
   };
 
-  function checkPassword(str: any) {
-    let re = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
-    console.log(re.test(str));
-    return re.test(str);
-  }
-
-  function validateUserName(str: any) {
-    var usernameRegex = /^[a-zA-Z0-9]+$/;
-    return usernameRegex.test(str);
-  }
 
   return (
     <SafeAreaView style={styles.container}>
+      <Chip icon="account-arrow-right-outline" style={{paddingLeft: 50, paddingRight:50, paddingTop: 10, paddingBottom:10, marginBottom: 50}} onPress={() => console.log('Pressed')}>Welcome!</Chip>
       <TextInput
         onBlur={() => {
           validateUserName(username) === false
@@ -84,9 +81,9 @@ const UserLogin = ({ route, navigation }: Props) => {
             : setErrorMsg("");
         }}
         label="username"
-        style={{width: '90%'}}
-        activeOutlineColor="orange"
-        mode="outlined"
+        style={signupstyle.textInput}
+        activeOutlineColor={activeOutlineColor}
+        mode={inputMode}
         value={username}
         onChangeText={(username) => setUsername(username)}
       />
@@ -99,17 +96,17 @@ const UserLogin = ({ route, navigation }: Props) => {
         onChangeText={(password) => setPassword(password)}
         value={password}
         label="password"
-        style={{width: '90%'}}
-        activeOutlineColor="orange"
-        mode="outlined"
+        style={signupstyle.textInput}
+        activeOutlineColor={activeOutlineColor}
+        mode={inputMode}
         secureTextEntry
       />
-      <Text>
+      <Text style={{ color: errorMsgColor }}>
         {errorMsg}
       </Text>
-      <Pressable style={styles.ButtonStyle} onPress={() => userLogin()}>
-        <Text style={{ color: "purple" }}> Login </Text>
-      </Pressable>
+      <Button mode="contained" style={signupstyle.registerButton} onPress={() => userLogin()}>
+        <Text>Login</Text>
+      </Button>
       <Text>Not a User?</Text>
       <Pressable
         style={{ bottom: 0 }}
@@ -122,3 +119,4 @@ const UserLogin = ({ route, navigation }: Props) => {
 };
 
 export default UserLogin;
+

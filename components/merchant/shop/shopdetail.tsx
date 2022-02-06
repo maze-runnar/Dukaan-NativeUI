@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { View } from "react-native";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import styles from "../../../styles/signup";
+import styles from "../../../styles/common";
 import ENDPOINTS from "../../../utils/endpoints";
 import API from "../../../utils/api";
 

@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { SafeAreaView, Text, Pressable, TextInput, ScrollView, View, Image, Dimensions, StyleSheet } from "react-native";
-import styles from "../../styles/signup";
-import API from "../../utils/api";
-import ENDPOINTS from "../../utils/endpoints";
+import styles from "../../../styles/common";
+import API from "../../../utils/api";
+import ENDPOINTS from "../../../utils/endpoints";
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Sleep from "../../utils/sleep";
-import ShopItems from "../merchant/shop/shopitems";
+import Sleep from "../../../utils/sleep";
+import ShopItems from "../../merchant/shop/shopitems";
 
 const { width } = Dimensions.get("window");
 const height = width * 0.6;   //60%
