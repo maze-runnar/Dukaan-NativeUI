@@ -73,8 +73,9 @@ const UserLogin = ({ route, navigation }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Chip icon="account-arrow-right-outline" style={{paddingLeft: 50, paddingRight:50, paddingTop: 10, paddingBottom:10, marginBottom: 50}} onPress={() => console.log('Pressed')}>Welcome!</Chip>
+      <Chip icon="account-arrow-right" style={{paddingLeft: 50, paddingRight:50, paddingTop: 10, paddingBottom:10, marginBottom: 50}} onPress={() => console.log('Pressed')}>Welcome Back!</Chip>
       <TextInput
+          autoComplete
         onBlur={() => {
           validateUserName(username) === false
             ? setErrorMsg("not a valid username")
@@ -88,6 +89,7 @@ const UserLogin = ({ route, navigation }: Props) => {
         onChangeText={(username) => setUsername(username)}
       />
       <TextInput
+          autoComplete
         onBlur={() => {
           checkPassword(password) === false
             ? setErrorMsg("not a valid password")
