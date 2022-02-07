@@ -9,6 +9,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
 import {purple50} from "react-native-paper/lib/typescript/styles/colors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+import { Button } from "react-native-paper";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, "UserLogin">;
@@ -69,22 +70,25 @@ const Greeting = ({ route, navigation }: Props) => {
         notified where your product is available. And save time in searching for
         the deals from shop to shop.
       </Text>
-      <Pressable
-        style={styles.GreetingButtonStyle}
+      <Button
+        style={{marginTop: "30%", width: "90%"}}
+        mode="contained"
+        color="#eba315"
         onPress={async() => {
           const merchantid= await AsyncStorage.getItem("merchantid");
           merchantid !== "" && merchantid !== null && merchantid !== undefined ? navigation.navigate("MerchantDashboard") : navigation.navigate("MerchantSignUP")}}
       >
-        <Text style={{ color: "purple" }}> MERCHANT </Text>
-      </Pressable>
-      <Pressable
-        style={styles.GreetingButtonStyle}
+        <Text> MERCHANT <Entypo name="shop" size={20}></Entypo></Text>
+      </Button>
+      <Button
+        style={{marginTop: "3%", width: "90%"}}
+        mode="contained"
         onPress={async() => {
           const userid= await AsyncStorage.getItem("userid");
           userid !== "" && userid !== null && userid !== undefined ? navigation.navigate("Dashboard") : navigation.navigate("UserLogin")}}
         >
-        <Text style={{ color: "purple" }}> USER </Text>
-      </Pressable>
+        <Text> USER  <Entypo name="users" size={20}></Entypo></Text>
+      </Button>
     </View>
   );
 };

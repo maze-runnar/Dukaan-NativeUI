@@ -24,10 +24,9 @@ const styles = StyleSheet.create({
 		justifyContent: "center",
 		paddingVertical: 12,
 		paddingHorizontal: 32,
-		borderRadius: 20,
+		borderRadius: 5,
 		elevation: 3,
-		borderColor: "#eba315",
-		color: "#eba315",
+		borderColor: "purple",
 		borderWidth: 2,
 		width: "90%",
 		bottom: 0,
@@ -38,8 +37,8 @@ const styles = StyleSheet.create({
 	ImageStyle: {
 		alignItems: 'center',
 		justifyContent: 'center',
-		width: 100,
-		height: 100,
+		width: 120,
+		height: 120,
 		resizeMode: 'contain',
 		marginBottom: 50
 	},
