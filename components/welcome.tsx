@@ -7,7 +7,6 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Entypo } from '@expo/vector-icons';
 import * as SplashScreen from 'expo-splash-screen';
 import * as Font from 'expo-font';
-import {purple50} from "react-native-paper/lib/typescript/styles/colors";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import { Button } from "react-native-paper";
 

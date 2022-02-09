@@ -18,6 +18,8 @@ const UserLogin = ({ route, navigation }: Props) => {
   let [username, setUsername] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errorMsg, setErrorMsg] = React.useState("");
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
+
 
   function validateUserName(str: any) {
     var usernameRegex = /^[a-zA-Z0-9]+$/;
@@ -101,7 +103,17 @@ const UserLogin = ({ route, navigation }: Props) => {
         style={signupstyle.textInput}
         activeOutlineColor={activeOutlineColor}
         mode={inputMode}
-        secureTextEntry
+        secureTextEntry={secureTextEntry}
+        right={
+          <TextInput.Icon
+            name= {secureTextEntry ? "eye-off" : "eye"}
+            onPress={() => {
+              console.log(password);
+              setSecureTextEntry(!secureTextEntry);
+              return false;
+            }}
+          />
+        }
       />
       <Text style={{ color: errorMsgColor }}>
         {errorMsg}

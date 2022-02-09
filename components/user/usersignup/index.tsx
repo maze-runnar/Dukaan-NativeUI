@@ -9,6 +9,8 @@ import response from "../../../utils/data";
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../../../App";
 import checkPassword, { passwordValidationErrorMessage, inputMode, activeOutlineColor, buttonTextColor, errorMsgColor, invalidUserNamePasswordErrorMessage, invalidUserNameErrorMessage, buttonWidth } from './utils';
+import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
+
 
 type Props = NativeStackScreenProps<RootStackParamList, "UserSignUp">;
 
@@ -16,6 +18,7 @@ const UserSignUp = ({ route, navigation }: Props) => {
   let [username, setUsername] = React.useState("");
   let [password, setPassword] = React.useState("");
   let [errorMsg, setErrorMsg] = React.useState("");
+  const [secureTextEntry, setSecureTextEntry] = React.useState(true);
 
   const validateInput = () => {
     if (checkPassword(password) && validateUserName(username)) {
@@ -67,11 +70,9 @@ const UserSignUp = ({ route, navigation }: Props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Image
-        source={require("../../../assets/newuser-icon.png")}
-        style={styles.ImageStyle}
-      />
+      <MaterialCommunityIcons name="account-circle" size={80} color="purple" style={{marginBottom:20}}/>
       <TextInput
+        autoComplete
         onBlur={() => {
           validateUserName(username) === false
             ? setErrorMsg(invalidUserNameErrorMessage)
@@ -85,6 +86,7 @@ const UserSignUp = ({ route, navigation }: Props) => {
         value={username}
       />
       <TextInput
+      autoComplete={true}
         onBlur={() => {
           checkPassword(password) === false
             ? setErrorMsg(passwordValidationErrorMessage)
@@ -96,7 +98,17 @@ const UserSignUp = ({ route, navigation }: Props) => {
         label="password"
         mode={inputMode}
         activeOutlineColor={activeOutlineColor}
-        secureTextEntry
+        secureTextEntry={secureTextEntry}
+        right={
+          <TextInput.Icon
+            name= {secureTextEntry ? "eye-off" : "eye"}
+            onPress={() => {
+              console.log(password);
+              setSecureTextEntry(!secureTextEntry);
+              return false;
+            }}
+          />
+        }
       />
       <Text style={{ color: errorMsgColor }}>{errorMsg}</Text>
       <Button mode="contained" style={signupstyle.registerButton} onPress={() => userSignUP()}>
