@@ -5,7 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import UserSignUp from './components/user/usersignup/index';
 import UserLogin from './components/user/userlogin/index';
 import MyTabs from './components/user/userdashboard/userdashboard';
-import NearShops from './components/user/usernearshops/usernearshops';
+import NearShops from './components/user/usernearshops/index';
 import ShopDetails from './components/user/shopdetails/shopdetails';
 import UserProfile from './components/user/userprofile/userprofile';
 import EditUserDetails from './components/user/edituserdetails/edituserdetails';
