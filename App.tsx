@@ -60,7 +60,7 @@ export default function DukaanUI() {
         <Stack.Screen name="UserLogin" component={UserLogin} />
         <Stack.Screen name="Dashboard" options={{headerShown: false}} component={MyTabs} />
         <Stack.Screen name="NearShops" options={{headerShown: false}} component={NearShops} />
-        <Stack.Screen name="ShopDetails" component={ShopDetails} initialParams={{itemId: 1}}/>
+        <Stack.Screen name="ShopDetails" options={{headerShown: false}} component={ShopDetails} initialParams={{itemId: 1}}/>
         <Stack.Screen name="UserProfile" component={UserProfile} />
         <Stack.Screen name="EditUserDetails" component={EditUserDetails} initialParams={{userId: 1}}/>
         <Stack.Screen name="MerchantSignUP" component={MerchantSignUP} />

@@ -13,7 +13,7 @@ const CategoryView = (props: any) => {
                         return (
                             <View style={styles.cardcenters}>
                                 <Image
-                                    source={{ uri: props.ImageUri }}
+                                    source={{ uri: props.imageUri }}
                                     style={{ width: 100, height: 100, resizeMode: 'cover' }} />
                                 <Text  > {y['name'] + "\n"} </Text>
                             </View>
